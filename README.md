@@ -5,7 +5,6 @@ Website bảng thưởng lớp học phong cách pixel, dùng để cộng/trừ
 ## Link sử dụng
 
 - Bản online: https://quan-classroom-star-board-20260609.vercel.app/
-- Bản local: http://localhost:7310
 
 ## Tính năng chính
 
