@@ -4,10 +4,25 @@ const STUDENTS_KEY = "classroom-star-board-students-v1";
 const SOUND_KEY = "classroom-star-board-sound-v1";
 const REWARD_KEY = "classroom-star-board-reward-v1";
 const MAX_VISIBLE_STARS = 10;
-const MILESTONES = [30, 20, 10];
+const MILESTONES = [100, 90, 80, 70, 60, 50, 40, 30, 20, 10];
 const REWARD_OPTIONS = {
-  star: { icon: "⭐", label: "Sao", plural: "ngôi sao" },
-  apple: { icon: "🍎", label: "Táo", plural: "quả táo" },
+  star: { type: "star", icon: "⭐", label: "Sao", plural: "ngôi sao", boardTitle: "SAO" },
+  apple: { type: "apple", icon: "🍎", label: "Táo", plural: "quả táo", boardTitle: "TÁO ĐỎ" },
+  pizza: { type: "pizza", icon: "🍕", label: "Pizza", plural: "miếng pizza", boardTitle: "PIZZA" },
+  lollipop: { type: "lollipop", icon: "🍭", label: "Kẹo", plural: "cây kẹo mút", boardTitle: "KẸO MÚT" },
+  chicken: { type: "chicken", icon: "🍗", label: "Gà rán", plural: "đùi gà rán", boardTitle: "GÀ RÁN" },
+};
+const MILESTONE_EFFECTS = {
+  10: { badge: "🏆", title: "KHỞI ĐỘNG RỰC RỠ", icons: "✦ ✦ ✦", duration: 2200 },
+  20: { badge: "💎", title: "TỎA SÁNG", icons: "✦ 💎 ✦", duration: 2300 },
+  30: { badge: "👑", title: "BỨT PHÁ", icons: "🎉 👑 🎉", duration: 2400 },
+  40: { badge: "🚀", title: "TĂNG TỐC", icons: "🚀 ✦ 🚀", duration: 2500 },
+  50: { badge: "🌈", title: "NỬA CHẶNG HUYỀN ẢO", icons: "🌈 ✦ 🌈", duration: 2600 },
+  60: { badge: "🔥", title: "RỰC LỬA", icons: "🔥 ✦ 🔥", duration: 2700 },
+  70: { badge: "⚡", title: "SIÊU TỐC", icons: "⚡ ✦ ⚡", duration: 2800 },
+  80: { badge: "💫", title: "VŨ TRỤ NHỎ", icons: "💫 ✦ 💫", duration: 2900 },
+  90: { badge: "🌟", title: "GẦN CHẠM ĐỈNH", icons: "🌟 ✦ 🌟", duration: 3000 },
+  100: { badge: "🏅", title: "HUYỀN THOẠI 100 ĐIỂM", icons: "🏅 🌟 🏅", duration: 3400 },
 };
 
 const SAMPLE_STUDENTS = [
@@ -45,6 +60,14 @@ function createStudentId() {
 
 function getMilestone(stars) {
   return MILESTONES.find((milestone) => stars >= milestone) || 0;
+}
+
+function getMilestoneEffect(milestone) {
+  return MILESTONE_EFFECTS[milestone] || MILESTONE_EFFECTS[10];
+}
+
+function getMilestoneTier(milestone) {
+  return milestone ? Math.floor(milestone / 10) : 0;
 }
 
 function playTing(audioContextRef) {
@@ -192,7 +215,7 @@ function StudentCard({ student, reward, onAward, onPenalize, onEdit, onReset, on
     setBursts((current) => [...current, { id: burstId, milestone: reachedMilestone, nextTotal: nextStars }]);
     window.setTimeout(() => {
       setBursts((current) => current.filter((burst) => burst.id !== burstId));
-    }, reachedMilestone ? 2200 : 1350);
+    }, reachedMilestone ? getMilestoneEffect(reachedMilestone).duration : 1350);
     onAward(student.id);
   }
 
@@ -212,20 +235,30 @@ function StudentCard({ student, reward, onAward, onPenalize, onEdit, onReset, on
 
   const visibleStars = Math.min(student.stars, MAX_VISIBLE_STARS);
   const milestone = getMilestone(student.stars);
+  const milestoneEffect = milestone ? getMilestoneEffect(milestone) : null;
+  const milestoneTier = getMilestoneTier(milestone);
 
   return (
-    <article className={`student-card ${milestone ? `milestone-card milestone-${milestone}` : ""}`}>
+    <article className={`student-card ${milestone ? `milestone-card milestone-${milestone} milestone-tier-${milestoneTier}` : ""}`}>
       <div className="burst-layer" aria-hidden="true">
         {bursts.map((burst, index) => (
           <span
             key={burst.id}
-            className={burst.milestone ? "milestone-celebration" : `star-burst ${burst.penalty ? "penalty-burst" : ""} ${burst.emptyPenalty ? "empty-penalty-burst" : ""}`}
+            className={
+              burst.milestone
+                ? `milestone-celebration milestone-celebration-${burst.milestone} milestone-celebration-tier-${getMilestoneTier(burst.milestone)}`
+                : `star-burst ${burst.penalty ? "penalty-burst" : ""} ${burst.emptyPenalty ? "empty-penalty-burst" : ""}`
+            }
             style={{ "--burst-offset": `${(index % 3) * 12 - 12}px` }}
           >
             {burst.milestone ? (
               <>
-                <span className="celebration-icons">🎉 {reward.icon} 🏆 {reward.icon} 🎉</span>
+                <span className="celebration-icons">
+                  {getMilestoneEffect(burst.milestone).icons} {reward.icon} {getMilestoneEffect(burst.milestone).icons}
+                </span>
+                <span className="celebration-title">{getMilestoneEffect(burst.milestone).title}</span>
                 <strong>ĐẠT MỐC {burst.milestone} {reward.label.toLocaleUpperCase("vi")}!</strong>
+                <span className="celebration-score">TỔNG: {burst.nextTotal}</span>
               </>
             ) : burst.emptyPenalty ? (
               <span className="empty-reward-message">Đang 0 {reward.label.toLocaleLowerCase("vi")}</span>
@@ -259,7 +292,11 @@ function StudentCard({ student, reward, onAward, onPenalize, onEdit, onReset, on
             ) : (
               <>
                 <span className="stars reward-icons" aria-hidden="true">
-                  {reward.icon.repeat(visibleStars)}
+                  {Array.from({ length: visibleStars }, (_, iconIndex) => (
+                    <span key={iconIndex} className={`reward-icon-token reward-icon-${reward.type}`}>
+                      {reward.icon}
+                    </span>
+                  ))}
                 </span>
                 {student.stars > MAX_VISIBLE_STARS && (
                   <span className="more-stars">+{student.stars - MAX_VISIBLE_STARS}</span>
@@ -269,7 +306,7 @@ function StudentCard({ student, reward, onAward, onPenalize, onEdit, onReset, on
           </span>
           {milestone > 0 && (
             <span className="milestone-badge">
-              <span aria-hidden="true">{milestone === 30 ? "👑" : milestone === 20 ? "💎" : "🏆"}</span>
+              <span aria-hidden="true">{milestoneEffect.badge}</span>
               <span>ĐẠT MỐC</span>
               <strong>{milestone} {reward.label.toLocaleUpperCase("vi")}</strong>
             </span>
@@ -310,9 +347,10 @@ function StudentCard({ student, reward, onAward, onPenalize, onEdit, onReset, on
 export default function App() {
   const [students, setStudents] = useState(loadStudents);
   const [soundOn, setSoundOn] = useState(() => localStorage.getItem(SOUND_KEY) !== "off");
-  const [rewardType, setRewardType] = useState(() =>
-    localStorage.getItem(REWARD_KEY) === "apple" ? "apple" : "star",
-  );
+  const [rewardType, setRewardType] = useState(() => {
+    const savedReward = localStorage.getItem(REWARD_KEY);
+    return REWARD_OPTIONS[savedReward] ? savedReward : "star";
+  });
   const [studentDialog, setStudentDialog] = useState(null);
   const [confirmation, setConfirmation] = useState(null);
   const audioContextRef = useRef(null);
@@ -428,7 +466,7 @@ export default function App() {
           <div className="header-star" aria-hidden="true">{reward.icon}</div>
           <div>
             <p className="eyebrow">MỖI CỐ GẮNG · MỘT PHẦN THƯỞNG</p>
-            <h1 id="page-title">BẢNG {rewardType === "apple" ? "TÁO ĐỎ" : "SAO"} LỚP HỌC</h1>
+            <h1 id="page-title">BẢNG {reward.boardTitle} LỚP HỌC</h1>
             <p className="subtitle">Cùng nhau tỏa sáng mỗi ngày!</p>
           </div>
           <div className="header-star header-star-right" aria-hidden="true">{reward.icon}</div>
@@ -441,22 +479,18 @@ export default function App() {
             <span><strong>{totalStars}</strong> {reward.plural}</span>
           </div>
           <div className="reward-picker" role="group" aria-label="Chọn biểu tượng phần thưởng">
-            <button
-              type="button"
-              className={rewardType === "star" ? "is-active" : ""}
-              onClick={() => setRewardType("star")}
-              aria-pressed={rewardType === "star"}
-            >
-              ⭐ Ngôi sao
-            </button>
-            <button
-              type="button"
-              className={rewardType === "apple" ? "is-active" : ""}
-              onClick={() => setRewardType("apple")}
-              aria-pressed={rewardType === "apple"}
-            >
-              🍎 Táo đỏ
-            </button>
+            {Object.entries(REWARD_OPTIONS).map(([type, option]) => (
+              <button
+                key={type}
+                type="button"
+                className={rewardType === type ? "is-active" : ""}
+                onClick={() => setRewardType(type)}
+                aria-pressed={rewardType === type}
+              >
+                <span className={`picker-icon picker-icon-${option.type}`} aria-hidden="true">{option.icon}</span>
+                {option.label}
+              </button>
+            ))}
           </div>
           <div className="toolbar-actions">
             <button
