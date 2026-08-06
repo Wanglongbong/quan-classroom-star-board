@@ -11,8 +11,9 @@ Website bảng thưởng lớp học phong cách pixel, dùng để cộng/trừ
 - Cộng hoặc trừ điểm thưởng cho từng học sinh.
 - Chọn biểu tượng thưởng: ngôi sao, táo đỏ, pizza, kẹo mút hoặc đùi gà rán.
 - Hiệu ứng motion khi cộng/trừ, hiển thị tổng điểm mới.
-- Mốc 10 đến 100 điểm có huy hiệu và hiệu ứng nổi bật tăng dần.
+- Mốc 10 đến 500 điểm có huy hiệu và hiệu ứng nổi bật tăng dần.
 - Thêm, sửa tên, xóa học sinh và reset điểm.
+- Bảng Rules ở cuối trang quy đổi rõ điểm thưởng và điểm phạt.
 - Tự lưu dữ liệu bằng `localStorage` (bộ nhớ trong trình duyệt), tải lại trang không mất dữ liệu.
 
 ## Chạy trên máy cá nhân

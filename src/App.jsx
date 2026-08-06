@@ -4,7 +4,7 @@ const STUDENTS_KEY = "classroom-star-board-students-v1";
 const SOUND_KEY = "classroom-star-board-sound-v1";
 const REWARD_KEY = "classroom-star-board-reward-v1";
 const MAX_VISIBLE_STARS = 10;
-const MILESTONES = [100, 90, 80, 70, 60, 50, 40, 30, 20, 10];
+const MILESTONES = [500, 450, 400, 350, 300, 250, 200, 150, 100, 90, 80, 70, 60, 50, 40, 30, 20, 10];
 const REWARD_OPTIONS = {
   star: { type: "star", icon: "⭐", label: "Sao", plural: "ngôi sao", boardTitle: "SAO" },
   apple: { type: "apple", icon: "🍎", label: "Táo", plural: "quả táo", boardTitle: "TÁO ĐỎ" },
@@ -23,7 +23,22 @@ const MILESTONE_EFFECTS = {
   80: { badge: "💫", title: "VŨ TRỤ NHỎ", icons: "💫 ✦ 💫", duration: 2900 },
   90: { badge: "🌟", title: "GẦN CHẠM ĐỈNH", icons: "🌟 ✦ 🌟", duration: 3000 },
   100: { badge: "🏅", title: "HUYỀN THOẠI 100 ĐIỂM", icons: "🏅 🌟 🏅", duration: 3400 },
+  150: { badge: "🎖️", title: "NGÔI SAO DANH DỰ", icons: "🎖️ ✦ 🎖️", duration: 3500 },
+  200: { badge: "🏵️", title: "NHÀ VÔ ĐỊCH 200", icons: "🏵️ 💎 🏵️", duration: 3600 },
+  250: { badge: "🪄", title: "PHÉP MÀU LỚP HỌC", icons: "🪄 ✦ 🪄", duration: 3700 },
+  300: { badge: "🛡️", title: "HIỆP SĨ 300 ĐIỂM", icons: "🛡️ ⚡ 🛡️", duration: 3800 },
+  350: { badge: "🌌", title: "DẢI NGÂN HÀ", icons: "🌌 💫 🌌", duration: 3900 },
+  400: { badge: "🧿", title: "CỔNG ÁNH SÁNG", icons: "🧿 🌈 🧿", duration: 4000 },
+  450: { badge: "💠", title: "KIM CƯƠNG THƯỢNG HẠNG", icons: "💠 🌟 💠", duration: 4200 },
+  500: { badge: "🏆", title: "ĐỈNH CAO 500 ĐIỂM", icons: "🏆 👑 🏆", duration: 4600 },
 };
+
+const CLASS_RULES = [
+  { id: "homework", icon: "📘", title: "Làm bài tập về nhà", detail: "+10 điểm", tone: "good" },
+  { id: "perfect", icon: "✅", title: "Làm đúng hết", detail: "+20 điểm", tone: "great" },
+  { id: "missing-homework", icon: "⚠️", title: "Không làm bài tập về nhà", detail: "−10 điểm", tone: "bad" },
+  { id: "english", icon: "🍗", title: "Trong giờ luôn nói tiếng Anh", detail: "+10 điểm gà rán", tone: "chicken" },
+];
 
 const SAMPLE_STUDENTS = [
   { id: "sample-minh-anh", name: "Minh Anh", stars: 4 },
@@ -67,6 +82,14 @@ function getMilestoneEffect(milestone) {
 }
 
 function getMilestoneTier(milestone) {
+  if (milestone >= 500) return 18;
+  if (milestone >= 450) return 17;
+  if (milestone >= 400) return 16;
+  if (milestone >= 350) return 15;
+  if (milestone >= 300) return 14;
+  if (milestone >= 250) return 13;
+  if (milestone >= 200) return 12;
+  if (milestone >= 150) return 11;
   return milestone ? Math.floor(milestone / 10) : 0;
 }
 
@@ -538,6 +561,25 @@ export default function App() {
           </button>
           <p>Nhấn vào tên hoặc nút “+ {reward.label}” để khen thưởng</p>
         </footer>
+
+        <section className="rules-board" aria-labelledby="rules-title">
+          <div className="rules-header">
+            <span aria-hidden="true">📜</span>
+            <div>
+              <p className="rules-eyebrow">CLASS RULES</p>
+              <h2 id="rules-title">BẢNG RULES</h2>
+            </div>
+          </div>
+          <div className="rules-grid">
+            {CLASS_RULES.map((rule) => (
+              <article key={rule.id} className={`rule-card rule-${rule.tone}`}>
+                <span className="rule-icon" aria-hidden="true">{rule.icon}</span>
+                <span className="rule-title">{rule.title}</span>
+                <strong>{rule.detail}</strong>
+              </article>
+            ))}
+          </div>
+        </section>
       </section>
 
       {studentDialog && (
