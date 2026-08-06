@@ -23,14 +23,25 @@ const MILESTONE_EFFECTS = {
   80: { badge: "💫", title: "VŨ TRỤ NHỎ", icons: "💫 ✦ 💫", duration: 2900 },
   90: { badge: "🌟", title: "GẦN CHẠM ĐỈNH", icons: "🌟 ✦ 🌟", duration: 3000 },
   100: { badge: "🏅", title: "HUYỀN THOẠI 100 ĐIỂM", icons: "🏅 🌟 🏅", duration: 3400 },
-  150: { badge: "🎖️", title: "NGÔI SAO DANH DỰ", icons: "🎖️ ✦ 🎖️", duration: 3500 },
-  200: { badge: "🏵️", title: "NHÀ VÔ ĐỊCH 200", icons: "🏵️ 💎 🏵️", duration: 3600 },
-  250: { badge: "🪄", title: "PHÉP MÀU LỚP HỌC", icons: "🪄 ✦ 🪄", duration: 3700 },
-  300: { badge: "🛡️", title: "HIỆP SĨ 300 ĐIỂM", icons: "🛡️ ⚡ 🛡️", duration: 3800 },
-  350: { badge: "🌌", title: "DẢI NGÂN HÀ", icons: "🌌 💫 🌌", duration: 3900 },
-  400: { badge: "🧿", title: "CỔNG ÁNH SÁNG", icons: "🧿 🌈 🧿", duration: 4000 },
-  450: { badge: "💠", title: "KIM CƯƠNG THƯỢNG HẠNG", icons: "💠 🌟 💠", duration: 4200 },
-  500: { badge: "🏆", title: "ĐỈNH CAO 500 ĐIỂM", icons: "🏆 👑 🏆", duration: 4600 },
+  150: { badge: "🎖️", title: "CẤP DANH DỰ 150", icons: "🎖️ ✦ ✨", duration: 4200 },
+  200: { badge: "🏵️", title: "CẤP VÔ ĐỊCH 200", icons: "🏵️ 💎 ✦", duration: 4400 },
+  250: { badge: "🪄", title: "PHÉP MÀU RỰC RỠ", icons: "🪄 ✨ 💫", duration: 4600 },
+  300: { badge: "🛡️", title: "HIỆP SĨ ÁNH SÁNG", icons: "🛡️ ⚡ ✦", duration: 4800 },
+  350: { badge: "🌌", title: "DẢI NGÂN HÀ LỚP HỌC", icons: "🌌 💫 ✨", duration: 5000 },
+  400: { badge: "🧿", title: "CỔNG ÁNH SÁNG MỞ RA", icons: "🧿 🌈 💠", duration: 5200 },
+  450: { badge: "💠", title: "KIM CƯƠNG THƯỢNG HẠNG", icons: "💠 🌟 👑", duration: 5500 },
+  500: { badge: "🏆", title: "ĐỈNH CAO HUYỀN THOẠI 500", icons: "🏆 👑 🌟", duration: 6000 },
+};
+
+const MILESTONE_RANKS = {
+  150: "CẤP DANH DỰ",
+  200: "CẤP VÔ ĐỊCH",
+  250: "CẤP PHÉP MÀU",
+  300: "CẤP HIỆP SĨ",
+  350: "CẤP NGÂN HÀ",
+  400: "CẤP ÁNH SÁNG",
+  450: "CẤP KIM CƯƠNG",
+  500: "CẤP HUYỀN THOẠI",
 };
 
 const CLASS_RULES = [
@@ -276,6 +287,25 @@ function StudentCard({ student, reward, onAward, onPenalize, onEdit, onReset, on
           >
             {burst.milestone ? (
               <>
+                {burst.milestone >= 150 && (
+                  <span className="celebration-orbit" aria-hidden="true">
+                    {Array.from({ length: 8 }, (_, orbitIndex) => (
+                      <i
+                        key={orbitIndex}
+                        style={{
+                          "--orbit-index": orbitIndex,
+                          "--orbit-angle": `${orbitIndex * 45}deg`,
+                          "--orbit-counter-angle": `${orbitIndex * -45}deg`,
+                        }}
+                      >
+                        {orbitIndex % 3 === 0 ? reward.icon : getMilestoneEffect(burst.milestone).badge}
+                      </i>
+                    ))}
+                  </span>
+                )}
+                {burst.milestone >= 150 && (
+                  <span className="celebration-rank-title">{MILESTONE_RANKS[burst.milestone]}</span>
+                )}
                 <span className="celebration-icons">
                   {getMilestoneEffect(burst.milestone).icons} {reward.icon} {getMilestoneEffect(burst.milestone).icons}
                 </span>
@@ -308,6 +338,11 @@ function StudentCard({ student, reward, onAward, onPenalize, onEdit, onReset, on
           {student.name.trim().charAt(0).toLocaleUpperCase("vi") || "?"}
         </span>
         <span className="student-info">
+          {milestone >= 150 && (
+            <span className="milestone-rank-chip" aria-hidden="true">
+              {MILESTONE_RANKS[milestone]} · {milestone}
+            </span>
+          )}
           <span className="student-name">{student.name}</span>
           <span className="star-line" aria-label={`${student.stars} ${reward.plural}`}>
             {student.stars === 0 ? (

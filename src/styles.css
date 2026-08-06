@@ -276,6 +276,8 @@ h1 {
 
 .student-card {
   position: relative;
+  overflow: hidden;
+  isolation: isolate;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: stretch;
@@ -296,10 +298,49 @@ h1 {
   --milestone-badge-bg: linear-gradient(180deg, #fff39a, #ffc94f);
   --milestone-total-bg: #ffe675;
   --milestone-shadow: rgba(255, 224, 99, 0.32);
+  --milestone-aura: transparent;
+  --milestone-aura-opacity: 0;
+  --milestone-shine-opacity: 0;
+  --milestone-rank-bg: linear-gradient(90deg, #ffffff, #ffe675, #ffffff);
   border-width: 5px;
   border-color: var(--milestone-border);
   background: var(--milestone-card-bg);
   box-shadow: 0 8px 0 #1f554e, 0 0 0 4px var(--milestone-shadow), inset 0 -5px 0 rgba(218, 176, 97, 0.25);
+}
+
+.milestone-card::before,
+.milestone-card::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.milestone-card::before {
+  inset: 0;
+  background: var(--milestone-aura);
+  background-size: 180% 180%;
+  opacity: var(--milestone-aura-opacity);
+  transform-origin: 50% 50%;
+  animation: milestone-card-aura 4.8s linear infinite;
+}
+
+.milestone-card::after {
+  top: -70%;
+  bottom: -70%;
+  left: -35%;
+  width: 28%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.62), transparent);
+  opacity: var(--milestone-shine-opacity);
+  transform: rotate(18deg);
+  animation: milestone-card-sweep 3.2s ease-in-out infinite;
+}
+
+.milestone-card > .student-main,
+.milestone-card > .student-actions,
+.milestone-card > .milestone-rank-chip {
+  position: relative;
+  z-index: 1;
 }
 
 .milestone-20 {
@@ -395,9 +436,13 @@ h1 {
   --milestone-badge-bg: linear-gradient(90deg, #ffffff, #ffe66d, #ff9ff0, #9bf7ff, #ffffff);
   --milestone-total-bg: radial-gradient(circle, #ffffff 0 12%, #ffe66d 14%, #ff9ff0 47%, #8df5ff 100%);
   --milestone-shadow: rgba(255, 255, 255, 0.86);
+  --milestone-aura: radial-gradient(circle at 24% 22%, rgba(255,255,255,.9) 0 4%, transparent 5%), radial-gradient(circle at 76% 72%, rgba(255,255,255,.75) 0 3%, transparent 4%);
+  --milestone-aura-opacity: 0.42;
+  --milestone-shine-opacity: 0.38;
+  --milestone-rank-bg: linear-gradient(90deg, #ffffff, #ffe66d, #ff9ff0, #9bf7ff, #ffffff);
   background-size: 260% 100%;
-  box-shadow: 0 10px 0 #593263, 0 0 0 7px rgba(255, 255, 255, 0.75), 0 0 44px rgba(255, 230, 109, 0.9), 0 0 80px rgba(141, 245, 255, 0.65);
-  animation: milestone-legend-card 1.4s linear infinite;
+  box-shadow: 0 10px 0 #593263, 0 0 0 6px rgba(255, 255, 255, 0.7), 0 0 34px rgba(255, 230, 109, 0.78), 0 0 58px rgba(141, 245, 255, 0.55);
+  animation: milestone-legend-card 1.85s linear infinite;
 }
 
 .milestone-150 {
@@ -407,6 +452,11 @@ h1 {
   --milestone-badge-bg: linear-gradient(90deg, #fff1b8, #ffb757, #fff8df);
   --milestone-total-bg: radial-gradient(circle, #ffffff 0 14%, #ffd477 18%, #ffad50 100%);
   --milestone-shadow: rgba(255, 169, 69, 0.72);
+  --milestone-aura: radial-gradient(circle at 18% 24%, rgba(255,255,255,.95) 0 4%, transparent 5%), radial-gradient(circle at 82% 68%, rgba(255, 230, 139, .9) 0 5%, transparent 6%), conic-gradient(from 20deg, rgba(255, 191, 92, .35), transparent, rgba(255, 235, 164, .42), transparent, rgba(255, 191, 92, .35));
+  --milestone-aura-opacity: 0.34;
+  --milestone-shine-opacity: 0.55;
+  --milestone-rank-bg: linear-gradient(90deg, #fffdf2, #ffd178, #fff0bf, #fffdf2);
+  box-shadow: 0 11px 0 #7a4714, 0 0 0 8px rgba(255, 198, 94, 0.75), 0 0 58px rgba(255, 169, 69, 0.9), 0 0 92px rgba(255, 229, 143, 0.62);
   animation: milestone-honor-card 1.7s ease-in-out infinite;
 }
 
@@ -417,6 +467,11 @@ h1 {
   --milestone-badge-bg: linear-gradient(90deg, #dff9ff, #76ddff, #ffffff);
   --milestone-total-bg: radial-gradient(circle, #ffffff 0 16%, #8ceaff 20%, #4fc8eb 100%);
   --milestone-shadow: rgba(92, 214, 255, 0.76);
+  --milestone-aura: radial-gradient(circle at 22% 22%, rgba(255,255,255,1) 0 4%, transparent 5%), radial-gradient(circle at 78% 72%, rgba(108, 231, 255, .9) 0 5%, transparent 6%), conic-gradient(from 90deg, rgba(105, 220, 255, .42), transparent, rgba(255,255,255,.52), transparent, rgba(105, 220, 255, .42));
+  --milestone-aura-opacity: 0.38;
+  --milestone-shine-opacity: 0.62;
+  --milestone-rank-bg: linear-gradient(90deg, #f4feff, #8fe7ff, #ffffff, #d6f5ff);
+  box-shadow: 0 11px 0 #0e5167, 0 0 0 9px rgba(105, 220, 255, 0.78), 0 0 64px rgba(92, 214, 255, 0.95), 0 0 102px rgba(232, 252, 255, 0.72);
   animation: milestone-crystal-card 1.8s ease-in-out infinite;
 }
 
@@ -427,6 +482,11 @@ h1 {
   --milestone-badge-bg: linear-gradient(90deg, #ffd4ee, #d9c1ff, #fff0a5);
   --milestone-total-bg: radial-gradient(circle, #ffffff 0 12%, #ffbae6 16%, #b9a1ff 100%);
   --milestone-shadow: rgba(255, 142, 219, 0.78);
+  --milestone-aura: radial-gradient(circle at 16% 28%, rgba(255,255,255,.95) 0 4%, transparent 5%), radial-gradient(circle at 80% 18%, rgba(255, 209, 243, .9) 0 5%, transparent 6%), radial-gradient(circle at 74% 78%, rgba(197, 175, 255, .88) 0 5%, transparent 6%), conic-gradient(from 120deg, rgba(255, 125, 219, .38), transparent, rgba(186, 145, 255, .5), transparent, rgba(255, 238, 156, .38));
+  --milestone-aura-opacity: 0.42;
+  --milestone-shine-opacity: 0.68;
+  --milestone-rank-bg: linear-gradient(90deg, #fff8fd, #ffb0df, #d5b9ff, #fff0a5);
+  box-shadow: 0 12px 0 #6e2555, 0 0 0 10px rgba(255, 142, 219, 0.78), 0 0 72px rgba(255, 142, 219, 0.98), 0 0 116px rgba(185, 161, 255, 0.76);
   animation: milestone-magic-card 1.7s ease-in-out infinite;
 }
 
@@ -437,6 +497,11 @@ h1 {
   --milestone-badge-bg: linear-gradient(90deg, #d6e0ff, #9bb2ff, #fff2b5);
   --milestone-total-bg: radial-gradient(circle, #ffffff 0 14%, #a9b9ff 17%, #6f8cff 100%);
   --milestone-shadow: rgba(103, 131, 255, 0.8);
+  --milestone-aura: radial-gradient(circle at 18% 20%, rgba(255,255,255,1) 0 4%, transparent 5%), radial-gradient(circle at 84% 70%, rgba(255, 237, 164, .9) 0 5%, transparent 6%), conic-gradient(from 180deg, rgba(101, 130, 255, .48), transparent, rgba(255,255,255,.55), transparent, rgba(255, 236, 161, .46));
+  --milestone-aura-opacity: 0.48;
+  --milestone-shine-opacity: 0.74;
+  --milestone-rank-bg: linear-gradient(90deg, #f4f7ff, #a7baff, #fff1cb, #ffffff);
+  box-shadow: 0 12px 0 #1f3679, 0 0 0 11px rgba(103, 131, 255, 0.82), 0 0 82px rgba(103, 131, 255, 1), 0 0 128px rgba(255, 231, 145, 0.78);
   animation: milestone-shield-card 1.45s steps(3) infinite;
 }
 
@@ -447,6 +512,11 @@ h1 {
   --milestone-badge-bg: linear-gradient(90deg, #cbbdff, #8fefff, #fff1a0);
   --milestone-total-bg: radial-gradient(circle, #ffffff 0 12%, #9f8aff 18%, #72e9ff 100%);
   --milestone-shadow: rgba(141, 107, 255, 0.84);
+  --milestone-aura: radial-gradient(circle at 15% 18%, #ffffff 0 3%, transparent 4%), radial-gradient(circle at 80% 30%, #ffffff 0 2%, transparent 3%), radial-gradient(circle at 70% 82%, rgba(113, 234, 255, .95) 0 5%, transparent 6%), conic-gradient(from 220deg, rgba(126, 94, 255, .54), transparent, rgba(113, 234, 255, .48), transparent, rgba(255, 239, 162, .42));
+  --milestone-aura-opacity: 0.54;
+  --milestone-shine-opacity: 0.78;
+  --milestone-rank-bg: linear-gradient(90deg, #f6f0ff, #a991ff, #71eaff, #fff3a5);
+  box-shadow: 0 13px 0 #2e1b6e, 0 0 0 12px rgba(141, 107, 255, 0.84), 0 0 92px rgba(141, 107, 255, 1), 0 0 145px rgba(113, 234, 255, 0.88);
   animation: milestone-galaxy-card 1.9s linear infinite;
 }
 
@@ -457,6 +527,11 @@ h1 {
   --milestone-badge-bg: linear-gradient(90deg, #b9fff8, #d9c7ff, #fff0a0);
   --milestone-total-bg: radial-gradient(circle, #ffffff 0 13%, #91fff7 18%, #bba5ff 100%);
   --milestone-shadow: rgba(113, 255, 240, 0.88);
+  --milestone-aura: radial-gradient(circle at 17% 18%, rgba(255,255,255,1) 0 4%, transparent 5%), radial-gradient(circle at 78% 74%, rgba(174, 159, 255, .95) 0 5%, transparent 6%), conic-gradient(from 260deg, rgba(105, 255, 244, .6), rgba(255,255,255,.16), rgba(191, 168, 255, .54), rgba(255, 241, 158, .5), rgba(105, 255, 244, .6));
+  --milestone-aura-opacity: 0.6;
+  --milestone-shine-opacity: 0.84;
+  --milestone-rank-bg: linear-gradient(90deg, #f0ffff, #8dfff7, #e5d4ff, #fff6c4);
+  box-shadow: 0 14px 0 #046366, 0 0 0 13px rgba(113, 255, 240, 0.88), 0 0 104px rgba(113, 255, 240, 1), 0 0 164px rgba(187, 165, 255, 0.9);
   animation: milestone-portal-card 1.35s ease-in-out infinite;
 }
 
@@ -467,7 +542,12 @@ h1 {
   --milestone-badge-bg: linear-gradient(90deg, #ffffff, #91ccff, #dac4ff, #fff0a2);
   --milestone-total-bg: radial-gradient(circle, #ffffff 0 12%, #9fd2ff 17%, #d1b6ff 55%, #ffe779 100%);
   --milestone-shadow: rgba(132, 197, 255, 0.9);
+  --milestone-aura: radial-gradient(circle at 18% 18%, rgba(255,255,255,1) 0 5%, transparent 6%), radial-gradient(circle at 78% 26%, rgba(159, 210, 255, .95) 0 5%, transparent 6%), radial-gradient(circle at 72% 82%, rgba(255, 235, 132, .95) 0 5%, transparent 6%), conic-gradient(from 300deg, rgba(132, 197, 255, .66), rgba(255,255,255,.28), rgba(209, 182, 255, .62), rgba(255, 231, 121, .56), rgba(132, 197, 255, .66));
+  --milestone-aura-opacity: 0.66;
+  --milestone-shine-opacity: 0.9;
+  --milestone-rank-bg: linear-gradient(90deg, #ffffff, #9ed3ff, #d7c4ff, #ffffff, #ffe985);
   background-size: 240% 100%;
+  box-shadow: 0 15px 0 #0d4291, 0 0 0 14px rgba(132, 197, 255, 0.92), 0 0 118px rgba(132, 197, 255, 1), 0 0 180px rgba(209, 182, 255, 0.95);
   animation: milestone-diamond-card 1.15s linear infinite;
 }
 
@@ -478,12 +558,126 @@ h1 {
   --milestone-badge-bg: linear-gradient(90deg, #ffffff, #ffe66d, #ff9ff0, #9bf7ff, #b9ff80, #ffffff);
   --milestone-total-bg: radial-gradient(circle, #ffffff 0 10%, #ffe66d 13%, #ff9ff0 35%, #8df5ff 67%, #b9ff80 100%);
   --milestone-shadow: rgba(255, 255, 255, 0.96);
+  --milestone-aura: radial-gradient(circle at 16% 18%, rgba(255,255,255,1) 0 5%, transparent 6%), radial-gradient(circle at 82% 20%, rgba(255, 230, 109, .98) 0 5%, transparent 6%), radial-gradient(circle at 80% 80%, rgba(141, 245, 255, .98) 0 5%, transparent 6%), radial-gradient(circle at 20% 82%, rgba(255, 159, 240, .95) 0 5%, transparent 6%), conic-gradient(from 0deg, rgba(255, 230, 109, .72), rgba(255, 159, 240, .72), rgba(141, 245, 255, .72), rgba(185, 255, 128, .68), rgba(185, 165, 255, .7), rgba(255, 230, 109, .72));
+  --milestone-aura-opacity: 0.74;
+  --milestone-shine-opacity: 0.98;
+  --milestone-rank-bg: linear-gradient(90deg, #ffffff, #ffe66d, #ff9ff0, #8df5ff, #b9ff80, #ffffff);
   background-size: 320% 100%;
-  box-shadow: 0 12px 0 #3a1d77, 0 0 0 9px rgba(255, 255, 255, 0.82), 0 0 70px rgba(255, 230, 109, 1), 0 0 130px rgba(141, 245, 255, 0.9);
+  box-shadow: 0 17px 0 #3a1d77, 0 0 0 16px rgba(255, 255, 255, 0.94), 0 0 140px rgba(255, 230, 109, 1), 0 0 220px rgba(141, 245, 255, 1);
   animation: milestone-ultimate-card 1s linear infinite;
 }
 
+.milestone-tier-11,
+.milestone-tier-12,
+.milestone-tier-13,
+.milestone-tier-14,
+.milestone-tier-15,
+.milestone-tier-16,
+.milestone-tier-17,
+.milestone-tier-18 {
+  min-height: 124px;
+  border-width: 6px;
+  grid-template-columns: 1fr;
+}
+
+.milestone-tier-15,
+.milestone-tier-16,
+.milestone-tier-17,
+.milestone-tier-18 {
+  min-height: 134px;
+  border-width: 7px;
+}
+
+.milestone-tier-11 .student-main,
+.milestone-tier-12 .student-main,
+.milestone-tier-13 .student-main,
+.milestone-tier-14 .student-main,
+.milestone-tier-15 .student-main,
+.milestone-tier-16 .student-main,
+.milestone-tier-17 .student-main,
+.milestone-tier-18 .student-main {
+  padding-top: 18px;
+}
+
+.milestone-rank-chip {
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  max-width: 100%;
+  min-width: 176px;
+  margin-bottom: 9px;
+  padding: 7px 13px;
+  border: 3px solid var(--milestone-border);
+  border-radius: 999px;
+  color: var(--milestone-text);
+  background: var(--milestone-rank-bg);
+  background-size: 240% 100%;
+  box-shadow: 0 4px 0 var(--milestone-border), 0 0 22px var(--milestone-shadow);
+  font-family: ui-monospace, "Courier New", monospace;
+  font-size: 0.72rem;
+  font-weight: 1000;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  text-shadow: 1px 1px 0 rgba(255,255,255,.75);
+  transform: rotate(-1deg);
+  animation: rank-chip-shine 1.6s ease-in-out infinite;
+}
+
+.milestone-tier-13 .milestone-rank-chip,
+.milestone-tier-14 .milestone-rank-chip {
+  min-width: 196px;
+  font-size: 0.78rem;
+}
+
+.milestone-tier-15 .milestone-rank-chip,
+.milestone-tier-16 .milestone-rank-chip {
+  min-width: 220px;
+  padding-block: 8px;
+  font-size: 0.82rem;
+}
+
+.milestone-tier-17 .milestone-rank-chip,
+.milestone-tier-18 .milestone-rank-chip {
+  min-width: 252px;
+  padding-block: 9px;
+  border-width: 4px;
+  font-size: 0.88rem;
+  box-shadow: 0 5px 0 var(--milestone-border), 0 0 34px var(--milestone-shadow), 0 0 68px rgba(255,255,255,.72);
+}
+
+.milestone-tier-18 .milestone-rank-chip {
+  min-width: 286px;
+  color: #160545;
+  background: linear-gradient(90deg, #ffffff, #ffe66d, #ff9ff0, #8df5ff, #b9ff80, #ffffff);
+  background-size: 240% 100%;
+  animation: rank-chip-shine 1s linear infinite;
+}
+
+.milestone-tier-11 .reward-icon-token,
+.milestone-tier-12 .reward-icon-token,
+.milestone-tier-13 .reward-icon-token,
+.milestone-tier-14 .reward-icon-token,
+.milestone-tier-15 .reward-icon-token,
+.milestone-tier-16 .reward-icon-token,
+.milestone-tier-17 .reward-icon-token,
+.milestone-tier-18 .reward-icon-token {
+  border-color: var(--milestone-border);
+  box-shadow: 0 4px 0 var(--milestone-border), 0 0 18px var(--milestone-shadow), inset -3px -3px 0 rgba(255, 255, 255, 0.16);
+  transform: scale(1.05);
+}
+
+.milestone-tier-15 .reward-icon-token,
+.milestone-tier-16 .reward-icon-token,
+.milestone-tier-17 .reward-icon-token,
+.milestone-tier-18 .reward-icon-token {
+  transform: scale(1.12);
+}
+
 .student-main {
+  grid-column: 1;
+  grid-row: 1;
   display: grid;
   grid-template-columns: 66px minmax(0, 1fr) 70px;
   align-items: center;
@@ -650,21 +844,185 @@ h1 {
   animation: milestone-pulse 1.1s ease-in-out infinite;
 }
 
-.milestone-tier-15 .star-total,
-.milestone-tier-16 .star-total,
-.milestone-tier-17 .star-total,
-.milestone-tier-18 .star-total {
-  width: 92px;
-  height: 92px;
+.milestone-tier-11 .star-total {
+  width: 90px;
+  height: 90px;
+}
+
+.milestone-tier-12 .star-total {
+  width: 94px;
+  height: 94px;
+}
+
+.milestone-tier-13 .star-total {
+  width: 98px;
+  height: 98px;
+}
+
+.milestone-tier-14 .star-total {
+  width: 102px;
+  height: 102px;
+}
+
+.milestone-tier-15 .star-total {
+  width: 108px;
+  height: 108px;
+}
+
+.milestone-tier-16 .star-total {
+  width: 114px;
+  height: 114px;
+}
+
+.milestone-tier-17 .star-total {
+  width: 120px;
+  height: 120px;
 }
 
 .milestone-tier-18 .star-total {
-  width: 102px;
-  height: 102px;
+  width: 128px;
+  height: 128px;
   animation: milestone-pulse 760ms ease-in-out infinite;
 }
 
+.milestone-tier-11 .star-total strong,
+.milestone-tier-12 .star-total strong {
+  font-size: 2.35rem;
+}
+
+.milestone-tier-13 .star-total strong,
+.milestone-tier-14 .star-total strong {
+  font-size: 2.55rem;
+}
+
+.milestone-tier-15 .star-total strong,
+.milestone-tier-16 .star-total strong {
+  font-size: 2.8rem;
+}
+
+.milestone-tier-17 .star-total strong {
+  font-size: 3rem;
+}
+
+.milestone-tier-18 .star-total strong {
+  font-size: 3.25rem;
+}
+
+.milestone-tier-15 .star-total small,
+.milestone-tier-16 .star-total small,
+.milestone-tier-17 .star-total small,
+.milestone-tier-18 .star-total small {
+  font-size: 0.66rem;
+}
+
+.milestone-tier-13 .milestone-badge,
+.milestone-tier-14 .milestone-badge {
+  padding: 8px 14px;
+  font-size: 0.78rem;
+}
+
+.milestone-tier-15 .milestone-badge,
+.milestone-tier-16 .milestone-badge {
+  padding: 9px 15px;
+  font-size: 0.82rem;
+}
+
+.milestone-tier-17 .milestone-badge,
+.milestone-tier-18 .milestone-badge {
+  padding: 10px 16px;
+  border-width: 4px;
+  font-size: 0.88rem;
+  box-shadow: 0 5px 0 var(--milestone-border), 0 0 26px var(--milestone-shadow), inset 0 2px 0 rgba(255, 255, 255, 0.85);
+}
+
+.milestone-tier-17 .milestone-badge strong,
+.milestone-tier-18 .milestone-badge strong {
+  font-size: 1.08rem;
+}
+
+.milestone-tier-18 .milestone-badge {
+  background-size: 240% 100%;
+  animation: rank-chip-shine 1.1s linear infinite;
+}
+
+.milestone-tier-18 .milestone-badge > span:first-child {
+  font-size: 1.55rem;
+}
+
+.milestone-tier-15 .student-avatar,
+.milestone-tier-16 .student-avatar,
+.milestone-tier-17 .student-avatar,
+.milestone-tier-18 .student-avatar {
+  width: 70px;
+  height: 70px;
+  border-color: var(--milestone-border);
+  box-shadow: inset -5px -5px 0 rgba(132, 63, 45, 0.18), 0 0 26px var(--milestone-shadow), 4px 4px 0 rgba(255,255,255,.55);
+}
+
+.milestone-tier-17 .student-avatar,
+.milestone-tier-18 .student-avatar {
+  width: 76px;
+  height: 76px;
+  font-size: 2.05rem;
+}
+
+.milestone-tier-18 .student-avatar {
+  width: 92px;
+  height: 92px;
+  font-size: 2.4rem;
+}
+
+.milestone-tier-11 .student-main {
+  grid-template-columns: 66px minmax(0, 1fr) 90px;
+}
+
+.milestone-tier-12 .student-main {
+  grid-template-columns: 66px minmax(0, 1fr) 94px;
+}
+
+.milestone-tier-13 .student-main {
+  grid-template-columns: 68px minmax(0, 1fr) 98px;
+}
+
+.milestone-tier-14 .student-main {
+  grid-template-columns: 70px minmax(0, 1fr) 102px;
+}
+
+.milestone-tier-15 .student-main {
+  grid-template-columns: 76px minmax(0, 1fr) 108px;
+}
+
+.milestone-tier-16 .student-main {
+  grid-template-columns: 78px minmax(0, 1fr) 114px;
+}
+
+.milestone-tier-17 .student-main {
+  grid-template-columns: 84px minmax(0, 1fr) 120px;
+}
+
+.milestone-tier-18 .student-main {
+  grid-template-columns: 100px minmax(0, 1fr) 128px;
+  gap: 20px;
+}
+
+.milestone-tier-11 .student-actions,
+.milestone-tier-12 .student-actions,
+.milestone-tier-13 .student-actions,
+.milestone-tier-14 .student-actions,
+.milestone-tier-15 .student-actions,
+.milestone-tier-16 .student-actions,
+.milestone-tier-17 .student-actions,
+.milestone-tier-18 .student-actions {
+  grid-column: 1;
+  grid-row: 2;
+  grid-template-columns: minmax(120px, 1fr) minmax(120px, 1fr) repeat(3, 48px);
+  border-top: 3px dashed rgba(139, 95, 33, 0.42);
+  border-left: 0;
+}
+
 .student-actions {
+  grid-column: 2;
+  grid-row: 1;
   display: grid;
   grid-template-columns: minmax(86px, auto) minmax(86px, auto) repeat(3, 44px);
   align-items: center;
@@ -869,6 +1227,8 @@ h1 {
   --celebration-glow: rgba(255, 232, 121, 0.85);
   position: fixed;
   z-index: 50;
+  overflow: visible;
+  isolation: isolate;
   top: 50%;
   left: 50%;
   display: grid;
@@ -886,6 +1246,11 @@ h1 {
   text-align: center;
   transform: translate(-50%, -50%);
   animation: milestone-pop 2.1s steps(8) forwards;
+}
+
+.milestone-celebration > :not(.celebration-orbit) {
+  position: relative;
+  z-index: 1;
 }
 
 .milestone-celebration::before,
@@ -913,6 +1278,49 @@ h1 {
 }
 
 .celebration-icons { font-size: clamp(1.8rem, 7vw, 3.5rem); letter-spacing: 0.08em; }
+
+.celebration-orbit {
+  --orbit-radius: clamp(210px, 36vw, 370px);
+  position: absolute;
+  z-index: 0;
+  inset: 50%;
+  width: 1px;
+  height: 1px;
+  border-radius: 50%;
+  animation: celebration-orbit-spin 8s linear infinite;
+}
+
+.celebration-orbit i {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: grid;
+  place-items: center;
+  width: clamp(42px, 7vw, 70px);
+  height: clamp(42px, 7vw, 70px);
+  border: 3px solid rgba(255, 255, 255, 0.86);
+  border-radius: 50%;
+  color: var(--celebration-text);
+  background: var(--celebration-bg);
+  box-shadow: 0 0 24px var(--celebration-glow), inset 0 0 0 3px rgba(255,255,255,.55);
+  font-style: normal;
+  font-size: clamp(1.35rem, 4vw, 2.4rem);
+  text-shadow: 0 0 10px rgba(255,255,255,.9);
+  transform: rotate(var(--orbit-angle)) translateX(var(--orbit-radius)) rotate(var(--orbit-counter-angle));
+  animation: orbit-token-pulse 1.2s calc(var(--orbit-index) * 80ms) ease-in-out infinite;
+}
+
+.celebration-rank-title {
+  padding: 8px 18px;
+  border: 4px solid currentColor;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.68);
+  box-shadow: 0 5px 0 rgba(78, 49, 16, 0.32), 0 0 24px var(--celebration-glow);
+  font-size: clamp(0.92rem, 2.5vw, 1.35rem);
+  font-weight: 1000;
+  letter-spacing: 0.12em;
+  text-shadow: 2px 2px 0 rgba(255,255,255,.78);
+}
 
 .celebration-title {
   padding: 6px 12px;
@@ -986,14 +1394,14 @@ h1 {
   --celebration-text: #37115f;
   --celebration-bg: linear-gradient(110deg, #fff, #ffe66d, #ff8fe8, #82f5ff, #b9ff80, #fff);
   --celebration-glow: rgba(255, 255, 255, 1);
-  width: min(760px, calc(100vw - 28px));
-  border-width: 9px;
-  box-shadow: 0 16px 0 #593263, 0 0 0 10px rgba(255,255,255,.82), 0 0 90px rgba(255, 230, 109, 1), 0 0 130px rgba(141, 245, 255, 0.82);
+  width: min(700px, calc(100vw - 28px));
+  border-width: 8px;
+  box-shadow: 0 14px 0 #593263, 0 0 0 8px rgba(255,255,255,.78), 0 0 72px rgba(255, 230, 109, 0.92), 0 0 104px rgba(141, 245, 255, 0.72);
   animation: milestone-legend-pop 3.4s ease-out forwards;
 }
 
 .milestone-celebration-tier-10 strong {
-  font-size: clamp(2rem, 7vw, 4rem);
+  font-size: clamp(1.9rem, 6.7vw, 3.6rem);
 }
 
 .milestone-celebration-tier-11 {
@@ -1001,6 +1409,9 @@ h1 {
   --celebration-text: #623400;
   --celebration-bg: linear-gradient(110deg, #fff7df, #ffc36d, #ffe7b0, #fffaf0);
   --celebration-glow: rgba(255, 169, 69, 1);
+  width: min(760px, calc(100vw - 24px));
+  border-width: 9px;
+  box-shadow: 0 15px 0 #7a4714, 0 0 0 10px rgba(255,255,255,.82), 0 0 86px rgba(255, 169, 69, 1), 0 0 125px rgba(255, 230, 150, 0.82);
   animation: milestone-honor-pop 3.5s ease-out forwards;
 }
 
@@ -1009,6 +1420,9 @@ h1 {
   --celebration-text: #073e55;
   --celebration-bg: linear-gradient(110deg, #eefcff, #8fe7ff, #ffffff, #c7f2ff);
   --celebration-glow: rgba(92, 214, 255, 1);
+  width: min(790px, calc(100vw - 24px));
+  border-width: 9px;
+  box-shadow: 0 15px 0 #0e5167, 0 0 0 11px rgba(255,255,255,.84), 0 0 94px rgba(92, 214, 255, 1), 0 0 138px rgba(232, 252, 255, 0.88);
   animation: milestone-crystal-pop 3.6s ease-out forwards;
 }
 
@@ -1017,6 +1431,9 @@ h1 {
   --celebration-text: #641248;
   --celebration-bg: linear-gradient(110deg, #fff1fb, #ffb0df, #d5b9ff, #fff7d5);
   --celebration-glow: rgba(255, 142, 219, 1);
+  width: min(820px, calc(100vw - 24px));
+  border-width: 10px;
+  box-shadow: 0 16px 0 #6e2555, 0 0 0 11px rgba(255,255,255,.86), 0 0 105px rgba(255, 142, 219, 1), 0 0 150px rgba(185, 161, 255, 0.92);
   animation: milestone-magic-pop 3.7s ease-out forwards;
 }
 
@@ -1025,6 +1442,9 @@ h1 {
   --celebration-text: #13265e;
   --celebration-bg: linear-gradient(110deg, #eef3ff, #a7baff, #fff1cb, #ffffff);
   --celebration-glow: rgba(103, 131, 255, 1);
+  width: min(850px, calc(100vw - 24px));
+  border-width: 10px;
+  box-shadow: 0 16px 0 #1f3679, 0 0 0 12px rgba(255,255,255,.88), 0 0 116px rgba(103, 131, 255, 1), 0 0 162px rgba(255, 231, 145, 0.94);
   animation: milestone-shield-pop 3.8s steps(8) forwards;
 }
 
@@ -1033,6 +1453,9 @@ h1 {
   --celebration-text: #24105e;
   --celebration-bg: radial-gradient(circle at 15% 18%, #ffffff 0 3%, transparent 4%), radial-gradient(circle at 80% 30%, #ffffff 0 2%, transparent 3%), linear-gradient(110deg, #efe7ff, #a991ff, #71eaff, #fff3a5);
   --celebration-glow: rgba(141, 107, 255, 1);
+  width: min(880px, calc(100vw - 24px));
+  border-width: 11px;
+  box-shadow: 0 17px 0 #2e1b6e, 0 0 0 12px rgba(255,255,255,.9), 0 0 128px rgba(141, 107, 255, 1), 0 0 178px rgba(113, 234, 255, 0.96);
   animation: milestone-galaxy-pop 3.9s ease-out forwards;
 }
 
@@ -1041,6 +1464,9 @@ h1 {
   --celebration-text: #00474a;
   --celebration-bg: linear-gradient(110deg, #e8ffff, #8dfff7, #e5d4ff, #fff6c4);
   --celebration-glow: rgba(113, 255, 240, 1);
+  width: min(910px, calc(100vw - 22px));
+  border-width: 11px;
+  box-shadow: 0 17px 0 #046366, 0 0 0 13px rgba(255,255,255,.92), 0 0 140px rgba(113, 255, 240, 1), 0 0 195px rgba(187, 165, 255, 0.98);
   animation: milestone-portal-pop 4s ease-out forwards;
 }
 
@@ -1049,6 +1475,9 @@ h1 {
   --celebration-text: #092d74;
   --celebration-bg: linear-gradient(110deg, #ffffff, #9ed3ff, #d7c4ff, #ffffff, #ffe985);
   --celebration-glow: rgba(132, 197, 255, 1);
+  width: min(940px, calc(100vw - 22px));
+  border-width: 12px;
+  box-shadow: 0 18px 0 #0d4291, 0 0 0 14px rgba(255,255,255,.94), 0 0 154px rgba(132, 197, 255, 1), 0 0 215px rgba(209, 182, 255, 1);
   animation: milestone-diamond-pop 4.2s ease-out forwards;
 }
 
@@ -1057,14 +1486,57 @@ h1 {
   --celebration-text: #1b0b55;
   --celebration-bg: linear-gradient(110deg, #fff, #ffe66d, #ff8fe8, #82f5ff, #b9ff80, #b9a5ff, #fff);
   --celebration-glow: rgba(255, 255, 255, 1);
-  width: min(820px, calc(100vw - 24px));
-  border-width: 10px;
-  box-shadow: 0 18px 0 #3a1d77, 0 0 0 12px rgba(255,255,255,.88), 0 0 110px rgba(255, 230, 109, 1), 0 0 170px rgba(141, 245, 255, 0.95);
+  width: min(980px, calc(100vw - 20px));
+  border-width: 13px;
+  box-shadow: 0 20px 0 #3a1d77, 0 0 0 16px rgba(255,255,255,.96), 0 0 180px rgba(255, 230, 109, 1), 0 0 260px rgba(141, 245, 255, 1);
   animation: milestone-ultimate-pop 4.6s ease-out forwards;
 }
 
 .milestone-celebration-tier-18 strong {
-  font-size: clamp(2.2rem, 7.5vw, 4.4rem);
+  font-size: clamp(2.25rem, 8vw, 5.2rem);
+}
+
+.milestone-celebration-tier-11 strong,
+.milestone-celebration-tier-12 strong {
+  font-size: clamp(2rem, 6.8vw, 3.85rem);
+}
+
+.milestone-celebration-tier-13 strong,
+.milestone-celebration-tier-14 strong {
+  font-size: clamp(2.1rem, 7.1vw, 4.15rem);
+}
+
+.milestone-celebration-tier-15 strong,
+.milestone-celebration-tier-16 strong {
+  font-size: clamp(2.18rem, 7.4vw, 4.55rem);
+}
+
+.milestone-celebration-tier-17 strong {
+  font-size: clamp(2.22rem, 7.7vw, 4.85rem);
+}
+
+.milestone-celebration-tier-15 .celebration-icons,
+.milestone-celebration-tier-16 .celebration-icons,
+.milestone-celebration-tier-17 .celebration-icons,
+.milestone-celebration-tier-18 .celebration-icons {
+  font-size: clamp(2.2rem, 8vw, 4.3rem);
+}
+
+.milestone-celebration-tier-17 .celebration-rank-title,
+.milestone-celebration-tier-18 .celebration-rank-title {
+  padding: 10px 22px;
+  border-width: 5px;
+  font-size: clamp(1.05rem, 2.9vw, 1.65rem);
+}
+
+.milestone-celebration-tier-15 .celebration-orbit,
+.milestone-celebration-tier-16 .celebration-orbit {
+  --orbit-radius: clamp(230px, 39vw, 405px);
+}
+
+.milestone-celebration-tier-17 .celebration-orbit,
+.milestone-celebration-tier-18 .celebration-orbit {
+  --orbit-radius: clamp(245px, 42vw, 450px);
 }
 
 .rules-board {
@@ -1390,6 +1862,25 @@ h1 {
   to { background-position: 260% 0; filter: saturate(1.2) brightness(1); }
 }
 
+@keyframes milestone-card-aura {
+  from { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.04); }
+  to { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes milestone-card-sweep {
+  0%, 18% { transform: translateX(0) rotate(18deg); opacity: 0; }
+  38% { opacity: var(--milestone-shine-opacity); }
+  62% { opacity: var(--milestone-shine-opacity); }
+  82%, 100% { transform: translateX(540%) rotate(18deg); opacity: 0; }
+}
+
+@keyframes rank-chip-shine {
+  0% { background-position: 0 0; filter: brightness(1); }
+  50% { background-position: 120% 0; filter: brightness(1.16); }
+  100% { background-position: 240% 0; filter: brightness(1); }
+}
+
 @keyframes milestone-honor-card {
   0%, 100% { filter: saturate(1.08) brightness(1); }
   50% { filter: saturate(1.28) brightness(1.08); }
@@ -1540,6 +2031,20 @@ h1 {
   to { opacity: 1; transform: translateX(-50%) scale(1.08); }
 }
 
+@keyframes celebration-orbit-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes orbit-token-pulse {
+  0%, 100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.22);
+  }
+}
+
 @media (max-width: 800px) {
   .board-header { grid-template-columns: 54px 1fr 54px; padding-inline: 10px; }
   .header-star { font-size: 40px; }
@@ -1548,7 +2053,9 @@ h1 {
   .reward-picker { align-self: center; grid-template-columns: repeat(3, minmax(72px, 1fr)); }
   .toolbar-actions { justify-content: center; }
   .student-card { grid-template-columns: 1fr; }
-  .student-actions { grid-template-columns: 1fr 1fr repeat(3, 44px); border-top: 3px dashed #d6bd83; border-left: 0; }
+  .student-main { grid-column: 1; grid-row: 1; }
+  .student-actions { grid-column: 1; grid-row: 2; grid-template-columns: 1fr 1fr repeat(3, 44px); border-top: 3px dashed #d6bd83; border-left: 0; }
+  .rules-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 540px) {
@@ -1570,18 +2077,172 @@ h1 {
   .milestone-card .star-total strong { font-size: 1.55rem; }
   .milestone-badge { padding: 5px 8px; font-size: 0.58rem; }
   .milestone-badge strong { font-size: 0.72rem; }
-  .student-actions { grid-template-columns: 1fr 1fr repeat(3, 42px); gap: 6px; padding: 10px; }
+  .milestone-tier-11,
+  .milestone-tier-12,
+  .milestone-tier-13,
+  .milestone-tier-14,
+  .milestone-tier-15,
+  .milestone-tier-16,
+  .milestone-tier-17,
+  .milestone-tier-18 {
+    min-height: 0;
+    border-width: 5px;
+  }
+  .milestone-tier-11 .student-main,
+  .milestone-tier-12 .student-main,
+  .milestone-tier-13 .student-main,
+  .milestone-tier-14 .student-main,
+  .milestone-tier-15 .student-main,
+  .milestone-tier-16 .student-main,
+  .milestone-tier-17 .student-main,
+  .milestone-tier-18 .student-main {
+    grid-template-columns: 52px minmax(0, 1fr) 68px;
+    gap: 9px;
+    padding-top: 12px;
+  }
+  .milestone-tier-13 .student-main,
+  .milestone-tier-14 .student-main {
+    grid-template-columns: 54px minmax(0, 1fr) 72px;
+  }
+  .milestone-tier-15 .student-main,
+  .milestone-tier-16 .student-main {
+    grid-template-columns: 56px minmax(0, 1fr) 76px;
+  }
+  .milestone-tier-17 .student-main,
+  .milestone-tier-18 .student-main {
+    grid-template-columns: 58px minmax(0, 1fr) 80px;
+  }
+  .milestone-tier-11 .student-avatar,
+  .milestone-tier-12 .student-avatar,
+  .milestone-tier-13 .student-avatar,
+  .milestone-tier-14 .student-avatar,
+  .milestone-tier-15 .student-avatar,
+  .milestone-tier-16 .student-avatar,
+  .milestone-tier-17 .student-avatar,
+  .milestone-tier-18 .student-avatar {
+    width: 50px;
+    height: 50px;
+    font-size: 1.4rem;
+  }
+  .milestone-tier-11 .star-total,
+  .milestone-tier-12 .star-total {
+    width: 68px;
+    height: 68px;
+  }
+  .milestone-tier-13 .star-total,
+  .milestone-tier-14 .star-total {
+    width: 72px;
+    height: 72px;
+  }
+  .milestone-tier-15 .star-total,
+  .milestone-tier-16 .star-total {
+    width: 76px;
+    height: 76px;
+  }
+  .milestone-tier-17 .star-total,
+  .milestone-tier-18 .star-total {
+    width: 80px;
+    height: 80px;
+  }
+  .milestone-tier-11 .star-total strong,
+  .milestone-tier-12 .star-total strong,
+  .milestone-tier-13 .star-total strong,
+  .milestone-tier-14 .star-total strong,
+  .milestone-tier-15 .star-total strong,
+  .milestone-tier-16 .star-total strong,
+  .milestone-tier-17 .star-total strong,
+  .milestone-tier-18 .star-total strong {
+    font-size: 1.55rem;
+  }
+  .milestone-tier-15 .star-total small,
+  .milestone-tier-16 .star-total small,
+  .milestone-tier-17 .star-total small,
+  .milestone-tier-18 .star-total small {
+    font-size: 0.5rem;
+  }
+  .milestone-rank-chip,
+  .milestone-tier-13 .milestone-rank-chip,
+  .milestone-tier-14 .milestone-rank-chip,
+  .milestone-tier-15 .milestone-rank-chip,
+  .milestone-tier-16 .milestone-rank-chip,
+  .milestone-tier-17 .milestone-rank-chip,
+  .milestone-tier-18 .milestone-rank-chip {
+    top: 8px;
+    min-width: 0;
+    max-width: calc(100% - 18px);
+    padding: 6px 10px;
+    border-width: 3px;
+    font-size: 0.58rem;
+    letter-spacing: 0.04em;
+  }
+  .milestone-tier-13 .milestone-badge,
+  .milestone-tier-14 .milestone-badge,
+  .milestone-tier-15 .milestone-badge,
+  .milestone-tier-16 .milestone-badge,
+  .milestone-tier-17 .milestone-badge,
+  .milestone-tier-18 .milestone-badge {
+    padding: 6px 8px;
+    border-width: 3px;
+    font-size: 0.58rem;
+  }
+  .milestone-tier-17 .milestone-badge strong,
+  .milestone-tier-18 .milestone-badge strong {
+    font-size: 0.72rem;
+  }
+  .student-actions { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; padding: 10px; }
+  .milestone-tier-11 .student-actions,
+  .milestone-tier-12 .student-actions,
+  .milestone-tier-13 .student-actions,
+  .milestone-tier-14 .student-actions,
+  .milestone-tier-15 .student-actions,
+  .milestone-tier-16 .student-actions,
+  .milestone-tier-17 .student-actions,
+  .milestone-tier-18 .student-actions {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
   .award-button,
-  .penalty-button { grid-column: span 1; padding: 0 8px; }
-  .icon-button { width: 42px; }
+  .penalty-button { grid-column: span 3; padding: 0 8px; }
+  .icon-button { grid-column: span 2; width: 100%; }
   .toolbar-actions { display: grid; grid-template-columns: 1fr 1fr; }
   .reward-picker { width: 100%; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .reward-picker button { padding-inline: 5px; font-size: 0.68rem; }
   .picker-icon { width: 21px; height: 21px; }
   .sound-toggle, .reset-all-button { padding-inline: 7px; font-size: 0.7rem; }
+  .rules-grid { grid-template-columns: 1fr; }
+  .rule-card { min-height: 0; }
   .dialog { padding: 22px 17px; }
   .dialog-actions { flex-direction: column-reverse; }
   .button { width: 100%; }
+  .milestone-celebration {
+    padding: 18px 12px;
+    border-width: 6px;
+  }
+  .milestone-celebration-tier-10,
+  .milestone-celebration-tier-11,
+  .milestone-celebration-tier-12,
+  .milestone-celebration-tier-13,
+  .milestone-celebration-tier-14,
+  .milestone-celebration-tier-15,
+  .milestone-celebration-tier-16,
+  .milestone-celebration-tier-17,
+  .milestone-celebration-tier-18 {
+    width: calc(100vw - 18px);
+    border-width: 7px;
+  }
+  .celebration-orbit {
+    --orbit-radius: clamp(138px, 46vw, 205px);
+  }
+  .celebration-orbit i {
+    width: 36px;
+    height: 36px;
+    border-width: 2px;
+    font-size: 1.15rem;
+  }
+  .celebration-rank-title {
+    padding: 6px 10px;
+    border-width: 3px;
+    font-size: 0.72rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
