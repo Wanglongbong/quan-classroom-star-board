@@ -159,8 +159,9 @@ h1 {
 
 .toolbar {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 14px;
   padding: 14px 22px;
   border-top: 3px dashed rgba(255, 255, 255, 0.2);
@@ -176,10 +177,13 @@ h1 {
 }
 
 .class-stats {
+  flex: 0 0 auto;
   color: #e7fff4;
   font-size: 0.92rem;
   font-weight: 800;
 }
+
+.class-stats span { white-space: nowrap; }
 
 .class-stats strong {
   color: #ffe16d;
@@ -189,9 +193,11 @@ h1 {
 .stat-divider { color: #73bcb0; font-size: 0.65rem; }
 
 .reward-picker {
+  flex: 1 1 420px;
   display: inline-grid;
-  grid-template-columns: repeat(5, minmax(70px, auto));
+  grid-template-columns: repeat(5, minmax(74px, 1fr));
   gap: 4px;
+  width: min(520px, 100%);
   padding: 4px;
   border: 2px solid #173f3b;
   border-radius: 10px;
@@ -239,8 +245,15 @@ h1 {
   line-height: 1;
 }
 
+.picker-icon-fries { background: linear-gradient(180deg, #fff0a8, #ffbd43); }
+.picker-icon-burger { background: linear-gradient(180deg, #ffe0a3, #c9813d); }
+.picker-icon-donut { background: linear-gradient(135deg, #fff6df, #ff9bd3 55%, #ffcf6c); }
+.picker-icon-icecream { background: linear-gradient(180deg, #f4ffff, #aeeeff 55%, #ffd18a); }
+.picker-icon-noodles { background: linear-gradient(180deg, #ffe9a6, #ef9e4f); }
+
 .sound-toggle,
 .reset-all-button {
+  flex: 0 0 auto;
   min-height: 40px;
   padding: 8px 12px;
   border: 2px solid #173f3b;
@@ -755,6 +768,11 @@ h1 {
 .reward-icon-lollipop { background: linear-gradient(135deg, #fff7d8, #ffc0eb 55%, #9be7ff); }
 .reward-icon-chicken { background: linear-gradient(180deg, #ffe5a2, #d98439); }
 .reward-icon-apple { background: linear-gradient(180deg, #ffe5d7, #ff8177); }
+.reward-icon-fries { background: linear-gradient(180deg, #fff5b5, #ffbf3d); }
+.reward-icon-burger { background: linear-gradient(180deg, #ffe2a3, #bd793a); }
+.reward-icon-donut { background: linear-gradient(135deg, #fff5db, #ff9bd0 55%, #ffc95c); }
+.reward-icon-icecream { background: linear-gradient(180deg, #f2ffff, #aeefff 54%, #ffd08a); }
+.reward-icon-noodles { background: linear-gradient(180deg, #fff0a6, #e99642); }
 
 .more-stars {
   flex: 0 0 auto;
@@ -1137,6 +1155,56 @@ h1 {
   filter: grayscale(0.25) drop-shadow(0 7px 0 rgba(115, 43, 43, 0.18));
   animation-name: reward-icon-drop;
 }
+
+.reward-motion-star.is-award .reward-main-icon {
+  animation: reward-star-spark 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards;
+}
+
+.reward-motion-apple.is-award .reward-main-icon {
+  animation: reward-apple-bounce 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards;
+}
+
+.reward-motion-pizza.is-award .reward-main-icon {
+  animation: reward-pizza-spin 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards;
+}
+
+.reward-motion-lollipop.is-award .reward-main-icon {
+  animation: reward-lollipop-swirl 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards;
+}
+
+.reward-motion-chicken.is-award .reward-main-icon {
+  animation: reward-chicken-hop 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards;
+}
+
+.reward-motion-fries.is-award .reward-main-icon {
+  animation: reward-fries-pop 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards;
+}
+
+.reward-motion-burger.is-award .reward-main-icon {
+  animation: reward-burger-bounce 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards;
+}
+
+.reward-motion-donut.is-award .reward-main-icon {
+  animation: reward-donut-spin 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards;
+}
+
+.reward-motion-icecream.is-award .reward-main-icon {
+  animation: reward-icecream-sway 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards;
+}
+
+.reward-motion-noodles.is-award .reward-main-icon {
+  animation: reward-noodles-wiggle 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards;
+}
+
+.reward-motion-apple.is-award .reward-particles i { color: #67b85f; text-shadow: 0 0 8px #e8ffd8; }
+.reward-motion-pizza.is-award .reward-particles i { color: #ff9e37; text-shadow: 0 0 8px #ffe1a8; }
+.reward-motion-lollipop.is-award .reward-particles i { color: #ff7ed6; text-shadow: 0 0 9px #d6f5ff; }
+.reward-motion-chicken.is-award .reward-particles i { color: #ff8a34; text-shadow: 0 0 9px #ffe59a; }
+.reward-motion-fries.is-award .reward-particles i { color: #ffd447; text-shadow: 0 0 9px #fff0a8; animation-name: fries-particle-burst; }
+.reward-motion-burger.is-award .reward-particles i { color: #a95f28; text-shadow: 0 0 8px #ffe0a2; animation-name: burger-particle-burst; }
+.reward-motion-donut.is-award .reward-particles i { color: #ff7bc5; text-shadow: 0 0 9px #fff0a8; animation-name: donut-particle-swirl; }
+.reward-motion-icecream.is-award .reward-particles i { color: #8eeaff; text-shadow: 0 0 10px #ffffff; animation-name: icecream-particle-sparkle; }
+.reward-motion-noodles.is-award .reward-particles i { color: #ffbd45; text-shadow: 0 0 8px #fff0ad; animation-name: noodles-particle-wave; }
 
 .reward-change {
   position: absolute;
@@ -1771,6 +1839,82 @@ h1 {
   100% { transform: scale(0.8) rotate(15deg); }
 }
 
+@keyframes reward-star-spark {
+  0% { transform: scale(0.12) rotate(-40deg); filter: brightness(1); }
+  32% { transform: scale(1.34) rotate(16deg); filter: brightness(1.35); }
+  58% { transform: scale(0.94) rotate(-8deg); }
+  78%, 100% { transform: scale(1) rotate(0); filter: brightness(1.08); }
+}
+
+@keyframes reward-apple-bounce {
+  0% { transform: translateY(24px) scale(0.18) rotate(-18deg); }
+  30% { transform: translateY(-18px) scale(1.18) rotate(9deg); }
+  52% { transform: translateY(4px) scale(0.96) rotate(-5deg); }
+  74% { transform: translateY(-8px) scale(1.04) rotate(2deg); }
+  100% { transform: translateY(0) scale(1) rotate(0); }
+}
+
+@keyframes reward-pizza-spin {
+  0% { transform: scale(0.15) rotate(-120deg); }
+  35% { transform: scale(1.24) rotate(28deg); }
+  62% { transform: scale(0.95) rotate(370deg); }
+  100% { transform: scale(1) rotate(360deg); }
+}
+
+@keyframes reward-lollipop-swirl {
+  0% { transform: scale(0.12) rotate(-180deg); }
+  38% { transform: scale(1.26) rotate(35deg); }
+  62% { transform: scale(0.94) rotate(-18deg); }
+  100% { transform: scale(1) rotate(12deg); }
+}
+
+@keyframes reward-chicken-hop {
+  0% { transform: translateY(26px) scale(0.16) rotate(18deg); }
+  30% { transform: translateY(-20px) scale(1.22) rotate(-10deg); }
+  48% { transform: translateY(8px) scale(0.96) rotate(6deg); }
+  68% { transform: translateY(-10px) scale(1.06) rotate(-4deg); }
+  100% { transform: translateY(0) scale(1) rotate(0); }
+}
+
+@keyframes reward-fries-pop {
+  0% { transform: translateY(34px) scale(0.12) rotate(-8deg); }
+  24% { transform: translateY(-18px) scale(1.18) rotate(5deg); }
+  42% { transform: translateY(-4px) scale(1.06) rotate(-7deg); }
+  62% { transform: translateY(-12px) scale(1.16) rotate(4deg); }
+  100% { transform: translateY(0) scale(1) rotate(0); }
+}
+
+@keyframes reward-burger-bounce {
+  0% { transform: translateY(34px) scale(0.18); }
+  26% { transform: translateY(-14px) scale(1.22, 0.92); }
+  44% { transform: translateY(8px) scale(0.95, 1.14); }
+  64% { transform: translateY(-7px) scale(1.08, 0.97); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes reward-donut-spin {
+  0% { transform: scale(0.12) rotate(-220deg); }
+  34% { transform: scale(1.28) rotate(40deg); }
+  62% { transform: scale(0.96) rotate(410deg); }
+  100% { transform: scale(1) rotate(360deg); }
+}
+
+@keyframes reward-icecream-sway {
+  0% { transform: translateY(24px) scale(0.14) rotate(-16deg); }
+  30% { transform: translateY(-16px) scale(1.2) rotate(10deg); }
+  52% { transform: translateY(0) scale(0.96) rotate(-9deg); }
+  74% { transform: translateY(-6px) scale(1.04) rotate(5deg); }
+  100% { transform: translateY(0) scale(1) rotate(0); }
+}
+
+@keyframes reward-noodles-wiggle {
+  0% { transform: scale(0.14) rotate(-12deg) skewX(-6deg); }
+  28% { transform: scale(1.18) rotate(8deg) skewX(7deg); }
+  44% { transform: scale(1.04) rotate(-7deg) skewX(-5deg); }
+  60% { transform: scale(1.08) rotate(5deg) skewX(4deg); }
+  78%, 100% { transform: scale(1) rotate(0) skewX(0); }
+}
+
 @keyframes change-badge-pop {
   0% { opacity: 0; transform: scale(0) rotate(-20deg); }
   35% { opacity: 1; transform: scale(1.22) rotate(7deg); }
@@ -1788,6 +1932,41 @@ h1 {
   18% { opacity: 1; }
   75% { opacity: 1; }
   100% { opacity: 0; transform: translate(var(--particle-x), var(--particle-y)) scale(1.15) rotate(120deg); }
+}
+
+@keyframes fries-particle-burst {
+  0% { opacity: 0; transform: translate(0, 18px) scale(0.15) rotate(0); }
+  18% { opacity: 1; }
+  62% { opacity: 1; }
+  100% { opacity: 0; transform: translate(var(--particle-x), calc(var(--particle-y) - 18px)) scale(1.1) rotate(25deg); }
+}
+
+@keyframes burger-particle-burst {
+  0% { opacity: 0; transform: translate(0, 12px) scale(0.2); }
+  24% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.35), calc(var(--particle-y) * 0.2)) scale(1.2); }
+  62% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.72), calc(var(--particle-y) * 0.74 + 10px)) scale(0.95); }
+  100% { opacity: 0; transform: translate(var(--particle-x), calc(var(--particle-y) + 22px)) scale(0.75); }
+}
+
+@keyframes donut-particle-swirl {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.2) rotate(0); }
+  18% { opacity: 1; }
+  70% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.85), calc(var(--particle-y) * 0.85)) scale(1.1) rotate(260deg); }
+  100% { opacity: 0; transform: translate(var(--particle-x), var(--particle-y)) scale(0.65) rotate(420deg); }
+}
+
+@keyframes icecream-particle-sparkle {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.1); }
+  20% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.35), calc(var(--particle-y) * 0.35)) scale(1.25); }
+  58% { opacity: 0.75; transform: translate(calc(var(--particle-x) * 0.7), calc(var(--particle-y) * 0.72)) scale(0.85); }
+  100% { opacity: 0; transform: translate(var(--particle-x), var(--particle-y)) scale(1.4); }
+}
+
+@keyframes noodles-particle-wave {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.15) skewX(-8deg); }
+  22% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.28), calc(var(--particle-y) * 0.24)) scale(1.08) skewX(9deg); }
+  58% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.65), calc(var(--particle-y) * 0.72)) scale(0.95) skewX(-8deg); }
+  100% { opacity: 0; transform: translate(var(--particle-x), var(--particle-y)) scale(0.85) skewX(6deg); }
 }
 
 @keyframes total-pop {
@@ -2050,7 +2229,7 @@ h1 {
   .header-star { font-size: 40px; }
   .toolbar { align-items: stretch; flex-direction: column; }
   .class-stats { justify-content: center; }
-  .reward-picker { align-self: center; grid-template-columns: repeat(3, minmax(72px, 1fr)); }
+  .reward-picker { flex: 0 1 auto; align-self: center; grid-template-columns: repeat(3, minmax(72px, 1fr)); }
   .toolbar-actions { justify-content: center; }
   .student-card { grid-template-columns: 1fr; }
   .student-main { grid-column: 1; grid-row: 1; }

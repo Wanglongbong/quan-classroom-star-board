@@ -1,6 +1,6 @@
 # Classroom Star Board
 
-Website bảng thưởng lớp học phong cách pixel, dùng để cộng/trừ sao hoặc táo đỏ cho học sinh.
+Website bảng thưởng lớp học phong cách pixel, dùng để cộng/trừ điểm thưởng bằng nhiều biểu tượng vui cho học sinh.
 
 ## Link sử dụng
 
@@ -9,8 +9,8 @@ Website bảng thưởng lớp học phong cách pixel, dùng để cộng/trừ
 ## Tính năng chính
 
 - Cộng hoặc trừ điểm thưởng cho từng học sinh.
-- Chọn biểu tượng thưởng: ngôi sao, táo đỏ, pizza, kẹo mút hoặc đùi gà rán.
-- Hiệu ứng motion khi cộng/trừ, hiển thị tổng điểm mới.
+- Chọn biểu tượng thưởng: ngôi sao, táo đỏ, pizza, kẹo mút, đùi gà rán, khoai tây rán, burger, donut, kem hoặc mì.
+- Hiệu ứng motion riêng theo từng món khi cộng/trừ, hiển thị tổng điểm mới.
 - Mốc 10 đến 500 điểm có huy hiệu và hiệu ứng nổi bật tăng dần; từ 150 trở lên có cấp bậc, aura và popup celebration lớn hơn.
 - Thêm, sửa tên, xóa học sinh và reset điểm.
 - Bảng Rules ở cuối trang quy đổi rõ điểm thưởng và điểm phạt.

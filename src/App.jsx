@@ -11,6 +11,23 @@ const REWARD_OPTIONS = {
   pizza: { type: "pizza", icon: "🍕", label: "Pizza", plural: "miếng pizza", boardTitle: "PIZZA" },
   lollipop: { type: "lollipop", icon: "🍭", label: "Kẹo", plural: "cây kẹo mút", boardTitle: "KẸO MÚT" },
   chicken: { type: "chicken", icon: "🍗", label: "Gà rán", plural: "đùi gà rán", boardTitle: "GÀ RÁN" },
+  fries: { type: "fries", icon: "🍟", label: "Khoai", plural: "phần khoai", boardTitle: "KHOAI TÂY RÁN" },
+  burger: { type: "burger", icon: "🍔", label: "Burger", plural: "chiếc burger", boardTitle: "BURGER" },
+  donut: { type: "donut", icon: "🍩", label: "Donut", plural: "chiếc donut", boardTitle: "DONUT" },
+  icecream: { type: "icecream", icon: "🍦", label: "Kem", plural: "cây kem", boardTitle: "KEM" },
+  noodles: { type: "noodles", icon: "🍜", label: "Mì", plural: "bát mì", boardTitle: "MÌ" },
+};
+const REWARD_PARTICLES = {
+  star: ["✦", "•"],
+  apple: ["✦", "🍃"],
+  pizza: ["✦", "▰"],
+  lollipop: ["✦", "○"],
+  chicken: ["✦", "🔥"],
+  fries: ["▌", "✦"],
+  burger: ["✦", "▣"],
+  donut: ["○", "✦"],
+  icecream: ["❄", "✦"],
+  noodles: ["≋", "✦"],
 };
 const MILESTONE_EFFECTS = {
   10: { badge: "🏆", title: "KHỞI ĐỘNG RỰC RỠ", icons: "✦ ✦ ✦", duration: 2200 },
@@ -102,6 +119,11 @@ function getMilestoneTier(milestone) {
   if (milestone >= 200) return 12;
   if (milestone >= 150) return 11;
   return milestone ? Math.floor(milestone / 10) : 0;
+}
+
+function getRewardParticle(type, index) {
+  const particles = REWARD_PARTICLES[type] || REWARD_PARTICLES.star;
+  return particles[index % particles.length];
 }
 
 function playTing(audioContextRef) {
@@ -316,11 +338,11 @@ function StudentCard({ student, reward, onAward, onPenalize, onEdit, onReset, on
             ) : burst.emptyPenalty ? (
               <span className="empty-reward-message">Đang 0 {reward.label.toLocaleLowerCase("vi")}</span>
             ) : (
-              <span className={`reward-motion ${burst.penalty ? "is-penalty" : "is-award"}`}>
+              <span className={`reward-motion reward-motion-${reward.type} ${burst.penalty ? "is-penalty" : "is-award"}`}>
                 <span className="reward-particles">
                   {Array.from({ length: 8 }, (_, particleIndex) => (
                     <i key={particleIndex} style={{ "--particle-index": particleIndex }}>
-                      {particleIndex % 2 === 0 ? "✦" : "•"}
+                      {getRewardParticle(reward.type, particleIndex)}
                     </i>
                   ))}
                 </span>
