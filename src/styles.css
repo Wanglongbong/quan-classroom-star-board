@@ -193,11 +193,11 @@ h1 {
 .stat-divider { color: #73bcb0; font-size: 0.65rem; }
 
 .reward-picker {
-  flex: 1 1 420px;
+  flex: 1 1 640px;
   display: inline-grid;
-  grid-template-columns: repeat(5, minmax(74px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(92px, 1fr));
   gap: 4px;
-  width: min(520px, 100%);
+  width: min(760px, 100%);
   padding: 4px;
   border: 2px solid #173f3b;
   border-radius: 10px;
@@ -250,6 +250,16 @@ h1 {
 .picker-icon-donut { background: linear-gradient(135deg, #fff6df, #ff9bd3 55%, #ffcf6c); }
 .picker-icon-icecream { background: linear-gradient(180deg, #f4ffff, #aeeeff 55%, #ffd18a); }
 .picker-icon-noodles { background: linear-gradient(180deg, #ffe9a6, #ef9e4f); }
+.picker-icon-cupcake { background: linear-gradient(180deg, #fff7d7, #ff8bd4 56%, #caa2ff); }
+.picker-icon-cookie { background: linear-gradient(180deg, #ffe0a0, #c77b35); }
+.picker-icon-chocolate { background: linear-gradient(180deg, #d68b58, #6c341d); }
+.picker-icon-cake { background: linear-gradient(135deg, #fff1c9, #ff8bb4 52%, #fff7fb); }
+.picker-icon-popcorn { background: linear-gradient(180deg, #fff7c2, #ffdf62 48%, #ef5c4d); }
+.picker-icon-taco { background: linear-gradient(180deg, #ffe36f, #df8c34); }
+.picker-icon-sushi { background: linear-gradient(180deg, #fff9f0, #ff8a76 56%, #81d8a7); }
+.picker-icon-hotdog { background: linear-gradient(180deg, #ffe7a1, #d26b3a); }
+.picker-icon-pancake { background: linear-gradient(180deg, #fff1a4, #c9863e); }
+.picker-icon-boba { background: linear-gradient(180deg, #f1ddff, #c38ef2 55%, #6b3e24); }
 
 .sound-toggle,
 .reset-all-button {
@@ -773,6 +783,16 @@ h1 {
 .reward-icon-donut { background: linear-gradient(135deg, #fff5db, #ff9bd0 55%, #ffc95c); }
 .reward-icon-icecream { background: linear-gradient(180deg, #f2ffff, #aeefff 54%, #ffd08a); }
 .reward-icon-noodles { background: linear-gradient(180deg, #fff0a6, #e99642); }
+.reward-icon-cupcake { background: linear-gradient(180deg, #fff8da, #ff91d7 56%, #caa6ff); }
+.reward-icon-cookie { background: linear-gradient(180deg, #ffe2a5, #c57d35); }
+.reward-icon-chocolate { background: linear-gradient(180deg, #d8945e, #6f351e); }
+.reward-icon-cake { background: linear-gradient(135deg, #fff2ca, #ff91ba 52%, #fff8fb); }
+.reward-icon-popcorn { background: linear-gradient(180deg, #fff8bf, #ffdc5c 48%, #ed5c4e); }
+.reward-icon-taco { background: linear-gradient(180deg, #ffe672, #dd8b32); }
+.reward-icon-sushi { background: linear-gradient(180deg, #fffaf1, #ff8b78 56%, #85d9aa); }
+.reward-icon-hotdog { background: linear-gradient(180deg, #ffe8a4, #d16d3b); }
+.reward-icon-pancake { background: linear-gradient(180deg, #fff2a7, #c8883d); }
+.reward-icon-boba { background: linear-gradient(180deg, #f2deff, #c38ff3 55%, #704026); }
 
 .more-stars {
   flex: 0 0 auto;
@@ -1196,6 +1216,46 @@ h1 {
   animation: reward-noodles-wiggle 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards;
 }
 
+.reward-motion-cupcake.is-award .reward-main-icon {
+  animation: reward-cupcake-frost 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards;
+}
+
+.reward-motion-cookie.is-award .reward-main-icon {
+  animation: reward-cookie-crumble 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards;
+}
+
+.reward-motion-chocolate.is-award .reward-main-icon {
+  animation: reward-chocolate-snap 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards;
+}
+
+.reward-motion-cake.is-award .reward-main-icon {
+  animation: reward-cake-slice 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards;
+}
+
+.reward-motion-popcorn.is-award .reward-main-icon {
+  animation: reward-popcorn-pop 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards;
+}
+
+.reward-motion-taco.is-award .reward-main-icon {
+  animation: reward-taco-flip 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards;
+}
+
+.reward-motion-sushi.is-award .reward-main-icon {
+  animation: reward-sushi-roll 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards;
+}
+
+.reward-motion-hotdog.is-award .reward-main-icon {
+  animation: reward-hotdog-slide 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards;
+}
+
+.reward-motion-pancake.is-award .reward-main-icon {
+  animation: reward-pancake-stack 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards;
+}
+
+.reward-motion-boba.is-award .reward-main-icon {
+  animation: reward-boba-bubble 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards;
+}
+
 .reward-motion-apple.is-award .reward-particles i { color: #67b85f; text-shadow: 0 0 8px #e8ffd8; }
 .reward-motion-pizza.is-award .reward-particles i { color: #ff9e37; text-shadow: 0 0 8px #ffe1a8; }
 .reward-motion-lollipop.is-award .reward-particles i { color: #ff7ed6; text-shadow: 0 0 9px #d6f5ff; }
@@ -1205,6 +1265,16 @@ h1 {
 .reward-motion-donut.is-award .reward-particles i { color: #ff7bc5; text-shadow: 0 0 9px #fff0a8; animation-name: donut-particle-swirl; }
 .reward-motion-icecream.is-award .reward-particles i { color: #8eeaff; text-shadow: 0 0 10px #ffffff; animation-name: icecream-particle-sparkle; }
 .reward-motion-noodles.is-award .reward-particles i { color: #ffbd45; text-shadow: 0 0 8px #fff0ad; animation-name: noodles-particle-wave; }
+.reward-motion-cupcake.is-award .reward-particles i { color: #ff89d6; text-shadow: 0 0 10px #fff7c8; animation-name: cupcake-particle-sprinkle; }
+.reward-motion-cookie.is-award .reward-particles i { color: #b66d30; text-shadow: 0 0 8px #ffdf9b; animation-name: cookie-particle-crumb; }
+.reward-motion-chocolate.is-award .reward-particles i { color: #7b3b20; text-shadow: 0 0 8px #f2b37a; animation-name: chocolate-particle-chip; }
+.reward-motion-cake.is-award .reward-particles i { color: #ff76aa; text-shadow: 0 0 10px #fff0bd; animation-name: cake-particle-confetti; }
+.reward-motion-popcorn.is-award .reward-particles i { color: #ffe671; text-shadow: 0 0 9px #fff8c8; animation-name: popcorn-particle-pop; }
+.reward-motion-taco.is-award .reward-particles i { color: #f3b334; text-shadow: 0 0 9px #ffe7a0; animation-name: taco-particle-crunch; }
+.reward-motion-sushi.is-award .reward-particles i { color: #ff7768; text-shadow: 0 0 8px #d6ffe4; animation-name: sushi-particle-roll; }
+.reward-motion-hotdog.is-award .reward-particles i { color: #e06b38; text-shadow: 0 0 8px #ffe6a8; animation-name: hotdog-particle-zigzag; }
+.reward-motion-pancake.is-award .reward-particles i { color: #c47b2f; text-shadow: 0 0 9px #ffe9a6; animation-name: pancake-particle-drizzle; }
+.reward-motion-boba.is-award .reward-particles i { color: #8e5acb; text-shadow: 0 0 10px #f6e4ff; animation-name: boba-particle-bubble; }
 
 .reward-change {
   position: absolute;
@@ -1915,6 +1985,84 @@ h1 {
   78%, 100% { transform: scale(1) rotate(0) skewX(0); }
 }
 
+@keyframes reward-cupcake-frost {
+  0% { transform: translateY(24px) scale(0.14) rotate(-10deg); filter: saturate(1); }
+  30% { transform: translateY(-18px) scale(1.2) rotate(8deg); filter: saturate(1.35) brightness(1.18); }
+  52% { transform: translateY(2px) scale(0.96) rotate(-5deg); }
+  74% { transform: translateY(-7px) scale(1.06) rotate(3deg); }
+  100% { transform: translateY(0) scale(1) rotate(0); filter: saturate(1.12); }
+}
+
+@keyframes reward-cookie-crumble {
+  0% { transform: scale(0.16) rotate(-25deg); }
+  25% { transform: scale(1.22) rotate(12deg); }
+  42% { transform: translateX(-5px) scale(1.02) rotate(-8deg); }
+  58% { transform: translateX(5px) scale(1.08) rotate(7deg); }
+  78%, 100% { transform: translateX(0) scale(1) rotate(0); }
+}
+
+@keyframes reward-chocolate-snap {
+  0% { transform: scale(0.12) rotate(-8deg) skewX(-12deg); filter: brightness(1); }
+  30% { transform: scale(1.18) rotate(4deg) skewX(6deg); filter: brightness(1.28); }
+  46% { transform: scale(1.02) rotate(-4deg) skewX(-5deg); }
+  68% { transform: scale(1.1) rotate(3deg) skewX(2deg); }
+  100% { transform: scale(1) rotate(0) skewX(0); filter: brightness(1.05); }
+}
+
+@keyframes reward-cake-slice {
+  0% { transform: translate(-12px, 20px) scale(0.14) rotate(-16deg); }
+  28% { transform: translate(8px, -18px) scale(1.22) rotate(10deg); }
+  48% { transform: translate(-4px, 2px) scale(0.98) rotate(-6deg); }
+  70% { transform: translate(2px, -6px) scale(1.06) rotate(4deg); }
+  100% { transform: translate(0, 0) scale(1) rotate(0); }
+}
+
+@keyframes reward-popcorn-pop {
+  0% { transform: translateY(30px) scale(0.12) rotate(-4deg); }
+  20% { transform: translateY(-26px) scale(1.24) rotate(7deg); }
+  38% { transform: translateY(5px) scale(0.96) rotate(-5deg); }
+  58% { transform: translateY(-14px) scale(1.14) rotate(5deg); }
+  78%, 100% { transform: translateY(0) scale(1) rotate(0); }
+}
+
+@keyframes reward-taco-flip {
+  0% { transform: scale(0.14) rotateY(80deg) rotate(-20deg); }
+  32% { transform: scale(1.24) rotateY(-18deg) rotate(12deg); }
+  54% { transform: scale(0.96) rotateY(14deg) rotate(-7deg); }
+  76%, 100% { transform: scale(1) rotateY(0) rotate(0); }
+}
+
+@keyframes reward-sushi-roll {
+  0% { transform: translateX(-34px) scale(0.15) rotate(-260deg); }
+  34% { transform: translateX(12px) scale(1.2) rotate(40deg); }
+  58% { transform: translateX(-5px) scale(0.98) rotate(390deg); }
+  100% { transform: translateX(0) scale(1) rotate(360deg); }
+}
+
+@keyframes reward-hotdog-slide {
+  0% { transform: translateX(-38px) translateY(18px) scale(0.16) rotate(-8deg); }
+  30% { transform: translateX(14px) translateY(-12px) scale(1.18) rotate(5deg); }
+  48% { transform: translateX(-7px) translateY(3px) scale(0.98) rotate(-4deg); }
+  70% { transform: translateX(4px) translateY(-5px) scale(1.05) rotate(3deg); }
+  100% { transform: translateX(0) translateY(0) scale(1) rotate(0); }
+}
+
+@keyframes reward-pancake-stack {
+  0% { transform: translateY(34px) scale(0.18, 0.1); }
+  26% { transform: translateY(-16px) scale(1.18, 1.08); }
+  44% { transform: translateY(8px) scale(1.08, 0.9); }
+  64% { transform: translateY(-6px) scale(1.05, 1.04); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes reward-boba-bubble {
+  0% { transform: translateY(26px) scale(0.14); filter: hue-rotate(0deg); }
+  24% { transform: translateY(-18px) scale(1.2); filter: hue-rotate(12deg) brightness(1.12); }
+  42% { transform: translateY(2px) scale(0.96); }
+  62% { transform: translateY(-9px) scale(1.08); }
+  82%, 100% { transform: translateY(0) scale(1); filter: hue-rotate(0deg); }
+}
+
 @keyframes change-badge-pop {
   0% { opacity: 0; transform: scale(0) rotate(-20deg); }
   35% { opacity: 1; transform: scale(1.22) rotate(7deg); }
@@ -1967,6 +2115,77 @@ h1 {
   22% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.28), calc(var(--particle-y) * 0.24)) scale(1.08) skewX(9deg); }
   58% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.65), calc(var(--particle-y) * 0.72)) scale(0.95) skewX(-8deg); }
   100% { opacity: 0; transform: translate(var(--particle-x), var(--particle-y)) scale(0.85) skewX(6deg); }
+}
+
+@keyframes cupcake-particle-sprinkle {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.12) rotate(0); }
+  18% { opacity: 1; }
+  70% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.8), calc(var(--particle-y) * 0.8)) scale(1.18) rotate(210deg); }
+  100% { opacity: 0; transform: translate(var(--particle-x), calc(var(--particle-y) - 10px)) scale(0.7) rotate(360deg); }
+}
+
+@keyframes cookie-particle-crumb {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.1); }
+  20% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.25), calc(var(--particle-y) * 0.2)) scale(1); }
+  68% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.8), calc(var(--particle-y) * 0.78 + 10px)) scale(0.85); }
+  100% { opacity: 0; transform: translate(var(--particle-x), calc(var(--particle-y) + 24px)) scale(0.55); }
+}
+
+@keyframes chocolate-particle-chip {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.15) rotate(-20deg); }
+  18% { opacity: 1; }
+  56% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.65), calc(var(--particle-y) * 0.55)) scale(1.05) rotate(18deg); }
+  100% { opacity: 0; transform: translate(var(--particle-x), calc(var(--particle-y) + 12px)) scale(0.7) rotate(55deg); }
+}
+
+@keyframes cake-particle-confetti {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.14) rotate(0); }
+  18% { opacity: 1; }
+  60% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.78), calc(var(--particle-y) * 0.72)) scale(1.08) rotate(160deg); }
+  100% { opacity: 0; transform: translate(var(--particle-x), var(--particle-y)) scale(0.8) rotate(320deg); }
+}
+
+@keyframes popcorn-particle-pop {
+  0% { opacity: 0; transform: translate(0, 18px) scale(0.1); }
+  16% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.2), calc(var(--particle-y) * 0.15 - 18px)) scale(1.3); }
+  58% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.65), calc(var(--particle-y) * 0.7)) scale(1); }
+  100% { opacity: 0; transform: translate(var(--particle-x), var(--particle-y)) scale(0.65); }
+}
+
+@keyframes taco-particle-crunch {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.12) rotate(-18deg); }
+  20% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.25), calc(var(--particle-y) * 0.2)) scale(1.15) rotate(20deg); }
+  62% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.75), calc(var(--particle-y) * 0.7)) scale(0.9) rotate(-15deg); }
+  100% { opacity: 0; transform: translate(var(--particle-x), calc(var(--particle-y) + 14px)) scale(0.62) rotate(35deg); }
+}
+
+@keyframes sushi-particle-roll {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.12) rotate(-120deg); }
+  18% { opacity: 1; }
+  68% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.82), calc(var(--particle-y) * 0.78)) scale(1.05) rotate(240deg); }
+  100% { opacity: 0; transform: translate(var(--particle-x), var(--particle-y)) scale(0.7) rotate(390deg); }
+}
+
+@keyframes hotdog-particle-zigzag {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.12); }
+  18% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.25), calc(var(--particle-y) * 0.15 - 8px)) scale(1); }
+  42% { transform: translate(calc(var(--particle-x) * 0.5 + 8px), calc(var(--particle-y) * 0.45)) scale(1.05); }
+  72% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.78 - 8px), calc(var(--particle-y) * 0.72)) scale(0.9); }
+  100% { opacity: 0; transform: translate(var(--particle-x), var(--particle-y)) scale(0.7); }
+}
+
+@keyframes pancake-particle-drizzle {
+  0% { opacity: 0; transform: translate(0, -8px) scale(0.12); }
+  22% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.2), calc(var(--particle-y) * 0.1 + 5px)) scale(1.2); }
+  62% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.68), calc(var(--particle-y) * 0.7 + 18px)) scale(0.9); }
+  100% { opacity: 0; transform: translate(var(--particle-x), calc(var(--particle-y) + 28px)) scale(0.62); }
+}
+
+@keyframes boba-particle-bubble {
+  0% { opacity: 0; transform: translate(0, 14px) scale(0.08); }
+  18% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.25), calc(var(--particle-y) * 0.2)) scale(0.9); }
+  58% { opacity: 0.9; transform: translate(calc(var(--particle-x) * 0.7), calc(var(--particle-y) * 0.75 - 12px)) scale(1.2); }
+  100% { opacity: 0; transform: translate(var(--particle-x), calc(var(--particle-y) - 24px)) scale(1.45); }
 }
 
 @keyframes total-pop {

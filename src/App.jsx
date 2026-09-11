@@ -16,6 +16,16 @@ const REWARD_OPTIONS = {
   donut: { type: "donut", icon: "🍩", label: "Donut", plural: "chiếc donut", boardTitle: "DONUT" },
   icecream: { type: "icecream", icon: "🍦", label: "Kem", plural: "cây kem", boardTitle: "KEM" },
   noodles: { type: "noodles", icon: "🍜", label: "Mì", plural: "bát mì", boardTitle: "MÌ" },
+  cupcake: { type: "cupcake", icon: "🧁", label: "Cupcake", plural: "chiếc cupcake", boardTitle: "CUPCAKE" },
+  cookie: { type: "cookie", icon: "🍪", label: "Bánh quy", plural: "chiếc bánh quy", boardTitle: "BÁNH QUY" },
+  chocolate: { type: "chocolate", icon: "🍫", label: "Socola", plural: "thanh socola", boardTitle: "SOCOLA" },
+  cake: { type: "cake", icon: "🍰", label: "Bánh kem", plural: "miếng bánh kem", boardTitle: "BÁNH KEM" },
+  popcorn: { type: "popcorn", icon: "🍿", label: "Bỏng", plural: "hộp bỏng ngô", boardTitle: "BỎNG NGÔ" },
+  taco: { type: "taco", icon: "🌮", label: "Taco", plural: "chiếc taco", boardTitle: "TACO" },
+  sushi: { type: "sushi", icon: "🍣", label: "Sushi", plural: "miếng sushi", boardTitle: "SUSHI" },
+  hotdog: { type: "hotdog", icon: "🌭", label: "Hotdog", plural: "chiếc hotdog", boardTitle: "HOTDOG" },
+  pancake: { type: "pancake", icon: "🥞", label: "Pancake", plural: "chiếc pancake", boardTitle: "PANCAKE" },
+  boba: { type: "boba", icon: "🧋", label: "Trà sữa", plural: "ly trà sữa", boardTitle: "TRÀ SỮA" },
 };
 const REWARD_PARTICLES = {
   star: ["✦", "•"],
@@ -28,6 +38,16 @@ const REWARD_PARTICLES = {
   donut: ["○", "✦"],
   icecream: ["❄", "✦"],
   noodles: ["≋", "✦"],
+  cupcake: ["✦", "♡"],
+  cookie: ["•", "✦"],
+  chocolate: ["▰", "✦"],
+  cake: ["✦", "▴"],
+  popcorn: ["•", "✦"],
+  taco: ["▰", "✦"],
+  sushi: ["○", "✦"],
+  hotdog: ["~", "✦"],
+  pancake: ["●", "✦"],
+  boba: ["○", "✦"],
 };
 const MILESTONE_EFFECTS = {
   10: { badge: "🏆", title: "KHỞI ĐỘNG RỰC RỠ", icons: "✦ ✦ ✦", duration: 2200 },
