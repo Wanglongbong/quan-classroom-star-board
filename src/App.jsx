@@ -26,6 +26,8 @@ const REWARD_OPTIONS = {
   hotdog: { type: "hotdog", icon: "🌭", label: "Hotdog", plural: "chiếc hotdog", boardTitle: "HOTDOG" },
   pancake: { type: "pancake", icon: "🥞", label: "Pancake", plural: "chiếc pancake", boardTitle: "PANCAKE" },
   boba: { type: "boba", icon: "🧋", label: "Trà sữa", plural: "ly trà sữa", boardTitle: "TRÀ SỮA" },
+  mooncake: { type: "mooncake", icon: "🥮", label: "Bánh TT", plural: "chiếc bánh trung thu", boardTitle: "BÁNH TRUNG THU" },
+  lantern: { type: "lantern", icon: "🏮", label: "Lồng đèn", plural: "chiếc lồng đèn", boardTitle: "LỒNG ĐÈN" },
 };
 const REWARD_PARTICLES = {
   star: ["✦", "•"],
@@ -48,6 +50,8 @@ const REWARD_PARTICLES = {
   hotdog: ["~", "✦"],
   pancake: ["●", "✦"],
   boba: ["○", "✦"],
+  mooncake: ["☾", "✦"],
+  lantern: ["✦", "◆"],
 };
 const MILESTONE_EFFECTS = {
   10: { badge: "🏆", title: "KHỞI ĐỘNG RỰC RỠ", icons: "✦ ✦ ✦", duration: 2200 },

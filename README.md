@@ -9,7 +9,7 @@ Website bảng thưởng lớp học phong cách pixel, dùng để cộng/trừ
 ## Tính năng chính
 
 - Cộng hoặc trừ điểm thưởng cho từng học sinh.
-- Chọn biểu tượng thưởng: ngôi sao, táo đỏ, pizza, kẹo mút, đùi gà rán, khoai tây rán, burger, donut, kem, mì, cupcake, bánh quy, socola, bánh kem, bỏng ngô, taco, sushi, hotdog, pancake hoặc trà sữa.
+- Chọn biểu tượng thưởng: ngôi sao, táo đỏ, pizza, kẹo mút, đùi gà rán, khoai tây rán, burger, donut, kem, mì, cupcake, bánh quy, socola, bánh kem, bỏng ngô, taco, sushi, hotdog, pancake, trà sữa, bánh trung thu hoặc lồng đèn.
 - Hiệu ứng motion riêng theo từng món khi cộng/trừ, hiển thị tổng điểm mới.
 - Mốc 10 đến 500 điểm có huy hiệu và hiệu ứng nổi bật tăng dần; từ 150 trở lên có cấp bậc, aura và popup celebration lớn hơn.
 - Thêm, sửa tên, xóa học sinh và reset điểm.

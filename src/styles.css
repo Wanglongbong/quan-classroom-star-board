@@ -261,6 +261,8 @@ h1 {
 .picker-icon-hotdog { background: linear-gradient(180deg, #ffe7a1, #d26b3a); }
 .picker-icon-pancake { background: linear-gradient(180deg, #fff1a4, #c9863e); }
 .picker-icon-boba { background: linear-gradient(180deg, #f1ddff, #c38ef2 55%, #6b3e24); }
+.picker-icon-mooncake { background: linear-gradient(135deg, #fff1a8, #d98b34 55%, #8b4b24); }
+.picker-icon-lantern { background: linear-gradient(180deg, #fff1a2, #f34f42 54%, #9b1f32); }
 
 .sound-toggle,
 .reset-all-button {
@@ -794,6 +796,8 @@ h1 {
 .reward-icon-hotdog { background: linear-gradient(180deg, #ffe8a4, #d16d3b); }
 .reward-icon-pancake { background: linear-gradient(180deg, #fff2a7, #c8883d); }
 .reward-icon-boba { background: linear-gradient(180deg, #f2deff, #c38ff3 55%, #704026); }
+.reward-icon-mooncake { background: linear-gradient(135deg, #fff2a9, #d99036 55%, #8b4c25); }
+.reward-icon-lantern { background: linear-gradient(180deg, #fff2a5, #f45543 54%, #9d2032); }
 
 .more-stars {
   flex: 0 0 auto;
@@ -1257,6 +1261,14 @@ h1 {
   animation: reward-boba-bubble 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards;
 }
 
+.reward-motion-mooncake.is-award .reward-main-icon {
+  animation: reward-mooncake-glow 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards;
+}
+
+.reward-motion-lantern.is-award .reward-main-icon {
+  animation: reward-lantern-float 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards;
+}
+
 .reward-motion-apple.is-award .reward-particles i { color: #67b85f; text-shadow: 0 0 8px #e8ffd8; }
 .reward-motion-pizza.is-award .reward-particles i { color: #ff9e37; text-shadow: 0 0 8px #ffe1a8; }
 .reward-motion-lollipop.is-award .reward-particles i { color: #ff7ed6; text-shadow: 0 0 9px #d6f5ff; }
@@ -1276,6 +1288,8 @@ h1 {
 .reward-motion-hotdog.is-award .reward-particles i { color: #e06b38; text-shadow: 0 0 8px #ffe6a8; animation-name: hotdog-particle-zigzag; }
 .reward-motion-pancake.is-award .reward-particles i { color: #c47b2f; text-shadow: 0 0 9px #ffe9a6; animation-name: pancake-particle-drizzle; }
 .reward-motion-boba.is-award .reward-particles i { color: #8e5acb; text-shadow: 0 0 10px #f6e4ff; animation-name: boba-particle-bubble; }
+.reward-motion-mooncake.is-award .reward-particles i { color: #ffd25d; text-shadow: 0 0 12px #fff5bd; animation-name: mooncake-particle-moon; }
+.reward-motion-lantern.is-award .reward-particles i { color: #ff574a; text-shadow: 0 0 12px #ffe79e; animation-name: lantern-particle-flicker; }
 
 .reward-change {
   position: absolute;
@@ -2064,6 +2078,22 @@ h1 {
   82%, 100% { transform: translateY(0) scale(1); filter: hue-rotate(0deg); }
 }
 
+@keyframes reward-mooncake-glow {
+  0% { transform: scale(0.14) rotate(-16deg); filter: brightness(0.95) saturate(1); }
+  28% { transform: scale(1.24) rotate(9deg); filter: brightness(1.35) saturate(1.35); }
+  48% { transform: scale(0.96) rotate(-5deg); }
+  68% { transform: scale(1.08) rotate(3deg); filter: brightness(1.22) saturate(1.2); }
+  100% { transform: scale(1) rotate(0); filter: brightness(1.08) saturate(1.08); }
+}
+
+@keyframes reward-lantern-float {
+  0% { transform: translateY(30px) scale(0.14) rotate(-12deg); filter: brightness(1); }
+  26% { transform: translateY(-22px) scale(1.18) rotate(10deg); filter: brightness(1.3); }
+  46% { transform: translateY(3px) scale(0.96) rotate(-8deg); }
+  66% { transform: translateY(-10px) scale(1.06) rotate(5deg); }
+  84%, 100% { transform: translateY(0) scale(1) rotate(0); filter: brightness(1.12); }
+}
+
 @keyframes change-badge-pop {
   0% { opacity: 0; transform: scale(0) rotate(-20deg); }
   35% { opacity: 1; transform: scale(1.22) rotate(7deg); }
@@ -2187,6 +2217,21 @@ h1 {
   18% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.25), calc(var(--particle-y) * 0.2)) scale(0.9); }
   58% { opacity: 0.9; transform: translate(calc(var(--particle-x) * 0.7), calc(var(--particle-y) * 0.75 - 12px)) scale(1.2); }
   100% { opacity: 0; transform: translate(var(--particle-x), calc(var(--particle-y) - 24px)) scale(1.45); }
+}
+
+@keyframes mooncake-particle-moon {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.12) rotate(-20deg); }
+  18% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.25), calc(var(--particle-y) * 0.2)) scale(1.12) rotate(18deg); }
+  62% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.72), calc(var(--particle-y) * 0.72 - 8px)) scale(1) rotate(145deg); }
+  100% { opacity: 0; transform: translate(var(--particle-x), calc(var(--particle-y) - 18px)) scale(0.74) rotate(260deg); }
+}
+
+@keyframes lantern-particle-flicker {
+  0% { opacity: 0; transform: translate(0, 12px) scale(0.12); }
+  16% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.2), calc(var(--particle-y) * 0.12 - 10px)) scale(1.2); }
+  42% { transform: translate(calc(var(--particle-x) * 0.52 + 7px), calc(var(--particle-y) * 0.45)) scale(0.95); }
+  72% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.8 - 7px), calc(var(--particle-y) * 0.78 - 14px)) scale(1.05); }
+  100% { opacity: 0; transform: translate(var(--particle-x), calc(var(--particle-y) - 26px)) scale(0.7); }
 }
 
 @keyframes total-pop {
