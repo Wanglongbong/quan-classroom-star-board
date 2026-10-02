@@ -1,6 +1,23 @@
 import { useEffect, useRef, useState } from "react";
 import SeasonalIcon from "./SeasonalIcon";
 
+const NIGHT_STARS = [
+  [7, 8], [18, 17], [31, 6], [44, 20], [57, 9], [72, 17], [89, 7],
+  [11, 35], [25, 46], [77, 39], [94, 52], [5, 72], [19, 85], [82, 77], [96, 91],
+];
+
+function CornerWeb({ right = false }) {
+  return (
+    <svg className={`corner-web${right ? " corner-web-right" : ""}`} viewBox="0 0 160 160" aria-hidden="true" focusable="false">
+      <g fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
+        <path d="M0 0H160M0 0V160M0 0L160 160M0 0L80 160M0 0L160 80M0 0L32 160M0 0L160 32" />
+        <path d="M32 0Q28 17 6 28M62 0Q56 35 13 54M99 0Q85 58 23 88M137 0Q116 84 35 123M160 20Q121 118 20 160" />
+        <path d="M0 32Q17 28 28 6M0 62Q35 56 54 13M0 99Q58 85 88 23M0 137Q84 116 123 35" />
+      </g>
+    </svg>
+  );
+}
+
 const STUDENTS_KEY = "classroom-star-board-students-v1";
 const SOUND_KEY = "classroom-star-board-sound-v1";
 const REWARD_KEY = "classroom-star-board-reward-v1";
@@ -589,13 +606,25 @@ export default function App() {
 
   return (
     <main className="page-shell">
-      <div className="sky-decoration clouds cloud-one" aria-hidden="true">☁</div>
-      <div className="sky-decoration clouds cloud-two" aria-hidden="true">☁</div>
-      <div className="sky-decoration sparkle sparkle-one" aria-hidden="true">✦</div>
-      <div className="sky-decoration sparkle sparkle-two" aria-hidden="true">✦</div>
+      <div className="night-sky" aria-hidden="true">
+        <div className="night-moon" />
+        {NIGHT_STARS.map(([left, top], index) => (
+          <span
+            className="night-star"
+            key={`${left}-${top}`}
+            style={{ left: `${left}%`, top: `${top}%`, animationDelay: `${(index % 5) * -0.65}s` }}
+          >✦</span>
+        ))}
+        <span className="night-pumpkin night-pumpkin-left"><SeasonalIcon type="pumpkin" /></span>
+        <span className="night-pumpkin night-pumpkin-right"><SeasonalIcon type="pumpkin" /></span>
+      </div>
 
       <section className="classroom-board" aria-labelledby="page-title">
         <header className={`board-header ${reward.boardTitle.length >= 10 ? "board-header-long-title" : ""}`}>
+          <CornerWeb />
+          <CornerWeb right />
+          <span className="header-pumpkin header-pumpkin-left" aria-hidden="true"><SeasonalIcon type="pumpkin" /></span>
+          <span className="header-pumpkin header-pumpkin-right" aria-hidden="true"><SeasonalIcon type="pumpkin" /></span>
           <div className="header-star" aria-hidden="true">{reward.icon}</div>
           <div>
             <p className="eyebrow">MỖI CỐ GẮNG · MỘT PHẦN THƯỞNG</p>
