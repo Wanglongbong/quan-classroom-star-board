@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import HalloweenIcon from "./HalloweenIcon";
+import SeasonalIcon from "./SeasonalIcon";
 
 const STUDENTS_KEY = "classroom-star-board-students-v1";
 const SOUND_KEY = "classroom-star-board-sound-v1";
@@ -29,11 +29,20 @@ const REWARD_OPTIONS = {
   boba: { type: "boba", icon: "🧋", label: "Trà sữa", plural: "ly trà sữa", boardTitle: "TRÀ SỮA" },
   mooncake: { type: "mooncake", icon: "🥮", label: "Bánh TT", plural: "chiếc bánh trung thu", boardTitle: "BÁNH TRUNG THU" },
   lantern: { type: "lantern", icon: "🏮", label: "Lồng đèn", plural: "chiếc lồng đèn", boardTitle: "LỒNG ĐÈN" },
-  pumpkin: { type: "pumpkin", icon: <HalloweenIcon type="pumpkin" />, label: "Bí ngô", plural: "quả bí ngô", boardTitle: "BÍ NGÔ" },
-  ghost: { type: "ghost", icon: <HalloweenIcon type="ghost" />, label: "Ma nhỏ", plural: "chú ma nhỏ", boardTitle: "MA NHỎ" },
-  bat: { type: "bat", icon: <HalloweenIcon type="bat" />, label: "Dơi", plural: "chú dơi", boardTitle: "DƠI" },
-  candycorn: { type: "candycorn", icon: <HalloweenIcon type="candycorn" />, label: "Kẹo bắp", plural: "viên kẹo bắp", boardTitle: "KẸO BẮP" },
-  witchhat: { type: "witchhat", icon: <HalloweenIcon type="witchhat" />, label: "Mũ phép", plural: "chiếc mũ phép", boardTitle: "MŨ PHÙ THỦY" },
+  pumpkin: { type: "pumpkin", icon: <SeasonalIcon type="pumpkin" />, label: "Bí ngô", plural: "quả bí ngô", boardTitle: "BÍ NGÔ" },
+  ghost: { type: "ghost", icon: <SeasonalIcon type="ghost" />, label: "Ma nhỏ", plural: "chú ma nhỏ", boardTitle: "MA NHỎ" },
+  bat: { type: "bat", icon: <SeasonalIcon type="bat" />, label: "Dơi", plural: "chú dơi", boardTitle: "DƠI" },
+  candycorn: { type: "candycorn", icon: <SeasonalIcon type="candycorn" />, label: "Kẹo bắp", plural: "viên kẹo bắp", boardTitle: "KẸO BẮP" },
+  witchhat: { type: "witchhat", icon: <SeasonalIcon type="witchhat" />, label: "Mũ phép", plural: "chiếc mũ phép", boardTitle: "MŨ PHÙ THỦY" },
+  blackcat: { type: "blackcat", icon: <SeasonalIcon type="blackcat" />, label: "Mèo đen", plural: "chú mèo đen", boardTitle: "MÈO ĐEN" },
+  cauldron: { type: "cauldron", icon: <SeasonalIcon type="cauldron" />, label: "Nồi phép", plural: "chiếc nồi phép", boardTitle: "NỒI PHÉP" },
+  skull: { type: "skull", icon: <SeasonalIcon type="skull" />, label: "Đầu lâu", plural: "chiếc đầu lâu", boardTitle: "ĐẦU LÂU" },
+  spider: { type: "spider", icon: <SeasonalIcon type="spider" />, label: "Nhện", plural: "chú nhện", boardTitle: "NHỆN" },
+  tree: { type: "tree", icon: <SeasonalIcon type="tree" />, label: "Thông Noel", plural: "cây thông Noel", boardTitle: "THÔNG NOEL" },
+  snowman: { type: "snowman", icon: <SeasonalIcon type="snowman" />, label: "Người tuyết", plural: "người tuyết", boardTitle: "NGƯỜI TUYẾT" },
+  gift: { type: "gift", icon: <SeasonalIcon type="gift" />, label: "Hộp quà", plural: "hộp quà", boardTitle: "HỘP QUÀ" },
+  santahat: { type: "santahat", icon: <SeasonalIcon type="santahat" />, label: "Mũ Noel", plural: "chiếc mũ Noel", boardTitle: "MŨ NOEL" },
+  candycane: { type: "candycane", icon: <SeasonalIcon type="candycane" />, label: "Kẹo gậy", plural: "cây kẹo gậy", boardTitle: "KẸO GẬY" },
 };
 const REWARD_PARTICLES = {
   star: ["✦", "•"],
@@ -63,6 +72,15 @@ const REWARD_PARTICLES = {
   bat: ["◆", "✦"],
   candycorn: ["▲", "✦"],
   witchhat: ["✧", "★"],
+  blackcat: ["✦", "◈"],
+  cauldron: ["✧", "○"],
+  skull: ["✦", "◆"],
+  spider: ["✧", "•"],
+  tree: ["✦", "❄"],
+  snowman: ["❄", "✧"],
+  gift: ["✦", "◆"],
+  santahat: ["❄", "✦"],
+  candycane: ["✧", "❄"],
 };
 const MILESTONE_EFFECTS = {
   10: { badge: "🏆", title: "KHỞI ĐỘNG RỰC RỠ", icons: "✦ ✦ ✦", duration: 2200 },
@@ -577,7 +595,7 @@ export default function App() {
       <div className="sky-decoration sparkle sparkle-two" aria-hidden="true">✦</div>
 
       <section className="classroom-board" aria-labelledby="page-title">
-        <header className="board-header">
+        <header className={`board-header ${reward.boardTitle.length >= 10 ? "board-header-long-title" : ""}`}>
           <div className="header-star" aria-hidden="true">{reward.icon}</div>
           <div>
             <p className="eyebrow">MỖI CỐ GẮNG · MỘT PHẦN THƯỞNG</p>

@@ -138,6 +138,10 @@ h1 {
   text-shadow: 4px 4px 0 #234f4c, 7px 7px 0 rgba(0, 0, 0, 0.15);
 }
 
+.board-header-long-title h1 {
+  font-size: clamp(1.55rem, 4.3vw, 2.85rem);
+}
+
 .subtitle {
   margin: 13px 0 0;
   color: #d9f5e9;
@@ -268,8 +272,17 @@ h1 {
 .picker-icon-bat { background: linear-gradient(180deg, #e2d4ff, #a394db); }
 .picker-icon-candycorn { background: linear-gradient(180deg, #fff9df, #ffc980); }
 .picker-icon-witchhat { background: linear-gradient(180deg, #e8d8ff, #a780d3); }
+.picker-icon-blackcat { background: linear-gradient(180deg, #e9daf4, #b99aca); }
+.picker-icon-cauldron { background: linear-gradient(180deg, #e3f9cd, #b4de9b); }
+.picker-icon-skull { background: linear-gradient(180deg, #fffdf0, #dccdea); }
+.picker-icon-spider { background: linear-gradient(180deg, #eee1f5, #b7a0c5); }
+.picker-icon-tree { background: linear-gradient(180deg, #e2f8ce, #8bd6a8); }
+.picker-icon-snowman { background: linear-gradient(180deg, #f9ffff, #afdef0); }
+.picker-icon-gift { background: linear-gradient(180deg, #fff4b9, #ff9ba3); }
+.picker-icon-santahat { background: linear-gradient(180deg, #fff7ec, #f49ba2); }
+.picker-icon-candycane { background: linear-gradient(180deg, #fff9ec, #f7b0a7); }
 
-.halloween-pixel-icon {
+.seasonal-pixel-icon {
   display: inline-block;
   width: 1em;
   height: 1em;
@@ -278,6 +291,9 @@ h1 {
   image-rendering: pixelated;
   vertical-align: -0.1em;
 }
+
+.picker-icon .seasonal-pixel-icon { width: 1.2em; height: 1.2em; }
+.reward-icon-token .seasonal-pixel-icon { width: 1.12em; height: 1.12em; }
 
 .sound-toggle,
 .reset-all-button {
@@ -818,6 +834,15 @@ h1 {
 .reward-icon-bat { background: linear-gradient(180deg, #e8dbff, #a694dc); }
 .reward-icon-candycorn { background: linear-gradient(180deg, #fffbe5, #ffc780); }
 .reward-icon-witchhat { background: linear-gradient(180deg, #eddcff, #aa80d8); }
+.reward-icon-blackcat { background: linear-gradient(180deg, #eadbf6, #bd9dcf); }
+.reward-icon-cauldron { background: linear-gradient(180deg, #e5f9d0, #a9d994); }
+.reward-icon-skull { background: linear-gradient(180deg, #fffdf0, #ddceec); }
+.reward-icon-spider { background: linear-gradient(180deg, #f0e3f7, #b5a0c5); }
+.reward-icon-tree { background: linear-gradient(180deg, #e4fad1, #86d2a5); }
+.reward-icon-snowman { background: linear-gradient(180deg, #f9ffff, #ade0ef); }
+.reward-icon-gift { background: linear-gradient(180deg, #fff4bd, #ff9ca8); }
+.reward-icon-santahat { background: linear-gradient(180deg, #fff7eb, #f1969e); }
+.reward-icon-candycane { background: linear-gradient(180deg, #fff9ef, #f5b0a9); }
 
 .more-stars {
   flex: 0 0 auto;
@@ -1294,6 +1319,15 @@ h1 {
 .reward-motion-bat.is-award .reward-main-icon { animation: halloween-bat-swoop 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
 .reward-motion-candycorn.is-award .reward-main-icon { animation: halloween-candy-bounce 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
 .reward-motion-witchhat.is-award .reward-main-icon { animation: halloween-hat-twirl 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
+.reward-motion-blackcat.is-award .reward-main-icon { animation: seasonal-cat-peek 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
+.reward-motion-cauldron.is-award .reward-main-icon { animation: seasonal-cauldron-bubble 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
+.reward-motion-skull.is-award .reward-main-icon { animation: seasonal-skull-rattle 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
+.reward-motion-spider.is-award .reward-main-icon { animation: seasonal-spider-drop 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
+.reward-motion-tree.is-award .reward-main-icon { animation: seasonal-tree-grow 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
+.reward-motion-snowman.is-award .reward-main-icon { animation: seasonal-snowman-bounce 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
+.reward-motion-gift.is-award .reward-main-icon { animation: seasonal-gift-open 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
+.reward-motion-santahat.is-award .reward-main-icon { animation: seasonal-hat-land 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
+.reward-motion-candycane.is-award .reward-main-icon { animation: seasonal-candy-swing 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
 
 .reward-motion-apple.is-award .reward-particles i { color: #67b85f; text-shadow: 0 0 8px #e8ffd8; }
 .reward-motion-pizza.is-award .reward-particles i { color: #ff9e37; text-shadow: 0 0 8px #ffe1a8; }
@@ -1321,6 +1355,15 @@ h1 {
 .reward-motion-bat.is-award .reward-particles i { color: #7957af; text-shadow: 0 0 10px #d9c5ff; animation-name: halloween-particle-swirl; }
 .reward-motion-candycorn.is-award .reward-particles i { color: #ffb43b; text-shadow: 0 0 10px #fff0ad; }
 .reward-motion-witchhat.is-award .reward-particles i { color: #af79da; text-shadow: 0 0 10px #e7d2ff; animation-name: halloween-particle-swirl; }
+.reward-motion-blackcat.is-award .reward-particles i,
+.reward-motion-skull.is-award .reward-particles i,
+.reward-motion-spider.is-award .reward-particles i { color: #9e7bb5; text-shadow: 0 0 10px #eee0ff; animation-name: halloween-particle-swirl; }
+.reward-motion-cauldron.is-award .reward-particles i { color: #91d878; text-shadow: 0 0 10px #e3ffb1; animation-name: halloween-particle-float; }
+.reward-motion-tree.is-award .reward-particles i,
+.reward-motion-gift.is-award .reward-particles i,
+.reward-motion-candycane.is-award .reward-particles i { color: #ffca60; text-shadow: 0 0 11px #fff2b5; animation-name: christmas-particle-snow; }
+.reward-motion-snowman.is-award .reward-particles i,
+.reward-motion-santahat.is-award .reward-particles i { color: #9bd8ea; text-shadow: 0 0 11px #fff; animation-name: christmas-particle-snow; }
 
 .reward-change {
   position: absolute;
@@ -2173,6 +2216,78 @@ h1 {
   22% { opacity: 1; transform: translate(calc(var(--particle-x) * -0.3), calc(var(--particle-y) * 0.3)) scale(1.2) rotate(90deg); }
   65% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.65), calc(var(--particle-y) * 0.75)) scale(0.95) rotate(230deg); }
   100% { opacity: 0; transform: translate(var(--particle-x), var(--particle-y)) scale(0.5) rotate(360deg); }
+}
+
+@keyframes seasonal-cat-peek {
+  0% { transform: translateY(56px) scale(0.35); opacity: 0; }
+  32% { transform: translateY(-17px) scale(1.2) rotate(-7deg); opacity: 1; }
+  60% { transform: translateY(6px) scale(0.96) rotate(5deg); }
+  100% { transform: translateY(0) scale(1) rotate(0); opacity: 1; }
+}
+
+@keyframes seasonal-cauldron-bubble {
+  0% { transform: translateY(35px) scale(0.2); }
+  28% { transform: translateY(-13px) scale(1.19, 0.9); }
+  50% { transform: translateY(7px) scale(0.93, 1.1); }
+  76% { transform: translateY(-6px) scale(1.07); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes seasonal-skull-rattle {
+  0% { transform: scale(0.15) rotate(-20deg); }
+  30% { transform: scale(1.2) rotate(12deg); }
+  52% { transform: scale(0.95) rotate(-8deg); }
+  72% { transform: scale(1.06) rotate(5deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+
+@keyframes seasonal-spider-drop {
+  0% { transform: translateY(-75px) scale(0.35); opacity: 0; }
+  35% { transform: translateY(16px) scale(1.15); opacity: 1; }
+  62% { transform: translateY(-12px) scale(0.95); }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@keyframes seasonal-tree-grow {
+  0% { transform: translateY(34px) scale(0.2); }
+  30% { transform: translateY(-13px) scale(1.18); }
+  58% { transform: translateY(5px) scale(0.95); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes seasonal-snowman-bounce {
+  0% { transform: translate(-32px, 36px) scale(0.2) rotate(-17deg); }
+  34% { transform: translate(12px, -18px) scale(1.2) rotate(8deg); }
+  62% { transform: translate(-5px, 6px) scale(0.96) rotate(-3deg); }
+  100% { transform: translate(0, 0) scale(1) rotate(0); }
+}
+
+@keyframes seasonal-gift-open {
+  0% { transform: scale(0.16) rotate(-14deg); }
+  30% { transform: scale(1.27, 0.87) rotate(7deg); }
+  55% { transform: scale(0.94, 1.11) rotate(-4deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+
+@keyframes seasonal-hat-land {
+  0% { transform: translateY(-55px) scale(0.35) rotate(24deg); }
+  38% { transform: translateY(12px) scale(1.19) rotate(-9deg); }
+  63% { transform: translateY(-8px) scale(0.96) rotate(4deg); }
+  100% { transform: translateY(0) scale(1) rotate(0); }
+}
+
+@keyframes seasonal-candy-swing {
+  0% { transform: scale(0.18) rotate(-50deg); }
+  32% { transform: scale(1.2) rotate(18deg); }
+  59% { transform: scale(0.96) rotate(-11deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+
+@keyframes christmas-particle-snow {
+  0% { opacity: 0; transform: translate(0, -17px) scale(0.15) rotate(0); }
+  22% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.2), calc(var(--particle-y) * 0.2 - 14px)) scale(1.15) rotate(30deg); }
+  70% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.68), calc(var(--particle-y) * 0.72)) scale(0.9) rotate(120deg); }
+  100% { opacity: 0; transform: translate(var(--particle-x), calc(var(--particle-y) + 18px)) scale(0.6) rotate(200deg); }
 }
 
 @keyframes change-badge-pop {
