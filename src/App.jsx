@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import HalloweenIcon from "./HalloweenIcon";
 
 const STUDENTS_KEY = "classroom-star-board-students-v1";
 const SOUND_KEY = "classroom-star-board-sound-v1";
@@ -28,6 +29,11 @@ const REWARD_OPTIONS = {
   boba: { type: "boba", icon: "🧋", label: "Trà sữa", plural: "ly trà sữa", boardTitle: "TRÀ SỮA" },
   mooncake: { type: "mooncake", icon: "🥮", label: "Bánh TT", plural: "chiếc bánh trung thu", boardTitle: "BÁNH TRUNG THU" },
   lantern: { type: "lantern", icon: "🏮", label: "Lồng đèn", plural: "chiếc lồng đèn", boardTitle: "LỒNG ĐÈN" },
+  pumpkin: { type: "pumpkin", icon: <HalloweenIcon type="pumpkin" />, label: "Bí ngô", plural: "quả bí ngô", boardTitle: "BÍ NGÔ" },
+  ghost: { type: "ghost", icon: <HalloweenIcon type="ghost" />, label: "Ma nhỏ", plural: "chú ma nhỏ", boardTitle: "MA NHỎ" },
+  bat: { type: "bat", icon: <HalloweenIcon type="bat" />, label: "Dơi", plural: "chú dơi", boardTitle: "DƠI" },
+  candycorn: { type: "candycorn", icon: <HalloweenIcon type="candycorn" />, label: "Kẹo bắp", plural: "viên kẹo bắp", boardTitle: "KẸO BẮP" },
+  witchhat: { type: "witchhat", icon: <HalloweenIcon type="witchhat" />, label: "Mũ phép", plural: "chiếc mũ phép", boardTitle: "MŨ PHÙ THỦY" },
 };
 const REWARD_PARTICLES = {
   star: ["✦", "•"],
@@ -52,6 +58,11 @@ const REWARD_PARTICLES = {
   boba: ["○", "✦"],
   mooncake: ["☾", "✦"],
   lantern: ["✦", "◆"],
+  pumpkin: ["✦", "◆"],
+  ghost: ["✧", "○"],
+  bat: ["◆", "✦"],
+  candycorn: ["▲", "✦"],
+  witchhat: ["✧", "★"],
 };
 const MILESTONE_EFFECTS = {
   10: { badge: "🏆", title: "KHỞI ĐỘNG RỰC RỠ", icons: "✦ ✦ ✦", duration: 2200 },

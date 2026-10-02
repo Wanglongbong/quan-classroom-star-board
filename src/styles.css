@@ -263,6 +263,21 @@ h1 {
 .picker-icon-boba { background: linear-gradient(180deg, #f1ddff, #c38ef2 55%, #6b3e24); }
 .picker-icon-mooncake { background: linear-gradient(135deg, #fff1a8, #d98b34 55%, #8b4b24); }
 .picker-icon-lantern { background: linear-gradient(180deg, #fff1a2, #f34f42 54%, #9b1f32); }
+.picker-icon-pumpkin { background: linear-gradient(180deg, #ffe9a9, #ff9b45); }
+.picker-icon-ghost { background: linear-gradient(180deg, #faf6ff, #bbadf4); }
+.picker-icon-bat { background: linear-gradient(180deg, #e2d4ff, #a394db); }
+.picker-icon-candycorn { background: linear-gradient(180deg, #fff9df, #ffc980); }
+.picker-icon-witchhat { background: linear-gradient(180deg, #e8d8ff, #a780d3); }
+
+.halloween-pixel-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  flex: none;
+  overflow: visible;
+  image-rendering: pixelated;
+  vertical-align: -0.1em;
+}
 
 .sound-toggle,
 .reset-all-button {
@@ -798,6 +813,11 @@ h1 {
 .reward-icon-boba { background: linear-gradient(180deg, #f2deff, #c38ff3 55%, #704026); }
 .reward-icon-mooncake { background: linear-gradient(135deg, #fff2a9, #d99036 55%, #8b4c25); }
 .reward-icon-lantern { background: linear-gradient(180deg, #fff2a5, #f45543 54%, #9d2032); }
+.reward-icon-pumpkin { background: linear-gradient(180deg, #ffe8a3, #ff9945); }
+.reward-icon-ghost { background: linear-gradient(180deg, #fcf7ff, #bcb0f1); }
+.reward-icon-bat { background: linear-gradient(180deg, #e8dbff, #a694dc); }
+.reward-icon-candycorn { background: linear-gradient(180deg, #fffbe5, #ffc780); }
+.reward-icon-witchhat { background: linear-gradient(180deg, #eddcff, #aa80d8); }
 
 .more-stars {
   flex: 0 0 auto;
@@ -1269,6 +1289,12 @@ h1 {
   animation: reward-lantern-float 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards;
 }
 
+.reward-motion-pumpkin.is-award .reward-main-icon { animation: halloween-pumpkin-pop 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
+.reward-motion-ghost.is-award .reward-main-icon { animation: halloween-ghost-float 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
+.reward-motion-bat.is-award .reward-main-icon { animation: halloween-bat-swoop 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
+.reward-motion-candycorn.is-award .reward-main-icon { animation: halloween-candy-bounce 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
+.reward-motion-witchhat.is-award .reward-main-icon { animation: halloween-hat-twirl 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
+
 .reward-motion-apple.is-award .reward-particles i { color: #67b85f; text-shadow: 0 0 8px #e8ffd8; }
 .reward-motion-pizza.is-award .reward-particles i { color: #ff9e37; text-shadow: 0 0 8px #ffe1a8; }
 .reward-motion-lollipop.is-award .reward-particles i { color: #ff7ed6; text-shadow: 0 0 9px #d6f5ff; }
@@ -1290,6 +1316,11 @@ h1 {
 .reward-motion-boba.is-award .reward-particles i { color: #8e5acb; text-shadow: 0 0 10px #f6e4ff; animation-name: boba-particle-bubble; }
 .reward-motion-mooncake.is-award .reward-particles i { color: #ffd25d; text-shadow: 0 0 12px #fff5bd; animation-name: mooncake-particle-moon; }
 .reward-motion-lantern.is-award .reward-particles i { color: #ff574a; text-shadow: 0 0 12px #ffe79e; animation-name: lantern-particle-flicker; }
+.reward-motion-pumpkin.is-award .reward-particles i { color: #ff982c; text-shadow: 0 0 10px #ffe092; }
+.reward-motion-ghost.is-award .reward-particles i { color: #bd9ae8; text-shadow: 0 0 10px #fff; animation-name: halloween-particle-float; }
+.reward-motion-bat.is-award .reward-particles i { color: #7957af; text-shadow: 0 0 10px #d9c5ff; animation-name: halloween-particle-swirl; }
+.reward-motion-candycorn.is-award .reward-particles i { color: #ffb43b; text-shadow: 0 0 10px #fff0ad; }
+.reward-motion-witchhat.is-award .reward-particles i { color: #af79da; text-shadow: 0 0 10px #e7d2ff; animation-name: halloween-particle-swirl; }
 
 .reward-change {
   position: absolute;
@@ -2092,6 +2123,56 @@ h1 {
   46% { transform: translateY(3px) scale(0.96) rotate(-8deg); }
   66% { transform: translateY(-10px) scale(1.06) rotate(5deg); }
   84%, 100% { transform: translateY(0) scale(1) rotate(0); filter: brightness(1.12); }
+}
+
+@keyframes halloween-pumpkin-pop {
+  0% { transform: translateY(35px) scale(0.15) rotate(-18deg); }
+  30% { transform: translateY(-20px) scale(1.25) rotate(9deg); }
+  52% { transform: translateY(7px) scale(0.92) rotate(-5deg); }
+  76% { transform: translateY(-5px) scale(1.08) rotate(3deg); }
+  100% { transform: translateY(0) scale(1) rotate(0); }
+}
+
+@keyframes halloween-ghost-float {
+  0% { transform: translate(-28px, 38px) scale(0.2); opacity: 0; }
+  32% { transform: translate(9px, -22px) scale(1.18); opacity: 1; }
+  60% { transform: translate(-7px, 4px) scale(0.97); }
+  84%, 100% { transform: translate(0, -7px) scale(1); opacity: 1; }
+}
+
+@keyframes halloween-bat-swoop {
+  0% { transform: translate(-70px, 45px) scale(0.2) rotate(-30deg); }
+  30% { transform: translate(20px, -24px) scale(1.22) rotate(14deg); }
+  55% { transform: translate(-10px, 4px) scale(0.95) rotate(-9deg); }
+  100% { transform: translate(0, 0) scale(1) rotate(0); }
+}
+
+@keyframes halloween-candy-bounce {
+  0% { transform: translateY(-50px) scale(0.2) rotate(25deg); }
+  32% { transform: translateY(11px) scale(1.2, 0.85) rotate(-8deg); }
+  58% { transform: translateY(-18px) scale(0.96, 1.1) rotate(5deg); }
+  100% { transform: translateY(0) scale(1) rotate(0); }
+}
+
+@keyframes halloween-hat-twirl {
+  0% { transform: translateY(28px) scale(0.12) rotate(-80deg); }
+  34% { transform: translateY(-17px) scale(1.22) rotate(24deg); }
+  62% { transform: translateY(5px) scale(0.95) rotate(-8deg); }
+  100% { transform: translateY(0) scale(1) rotate(0); }
+}
+
+@keyframes halloween-particle-float {
+  0% { opacity: 0; transform: translate(0, 15px) scale(0.15); }
+  22% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.2), -13px) scale(1.1); }
+  70% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.7), calc(var(--particle-y) * 0.7 - 20px)) scale(0.9); }
+  100% { opacity: 0; transform: translate(var(--particle-x), calc(var(--particle-y) - 35px)) scale(0.5); }
+}
+
+@keyframes halloween-particle-swirl {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.1) rotate(0); }
+  22% { opacity: 1; transform: translate(calc(var(--particle-x) * -0.3), calc(var(--particle-y) * 0.3)) scale(1.2) rotate(90deg); }
+  65% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.65), calc(var(--particle-y) * 0.75)) scale(0.95) rotate(230deg); }
+  100% { opacity: 0; transform: translate(var(--particle-x), var(--particle-y)) scale(0.5) rotate(360deg); }
 }
 
 @keyframes change-badge-pop {
