@@ -725,6 +725,20 @@ export default function App() {
             ))}
           </div>
         </section>
+
+        <div className="christmas-footer-scene" aria-hidden="true">
+          <span className="footer-candy footer-candy-left"><SeasonalIcon type="candycane" /></span>
+          <span className="footer-snowman"><SeasonalIcon type="snowman" /></span>
+          <span className="footer-gift footer-gift-one"><SeasonalIcon type="gift" /></span>
+          <span className="footer-stocking"><SeasonalIcon type="stocking" /></span>
+          <div className="footer-christmas-sign">
+            <small>MERRY</small>
+            <strong>CHRISTMAS</strong>
+          </div>
+          <span className="footer-gingerbread"><SeasonalIcon type="gingerbread" /></span>
+          <span className="footer-gift footer-gift-two"><SeasonalIcon type="gift" /></span>
+          <span className="footer-candy footer-candy-right"><SeasonalIcon type="candycane" /></span>
+        </div>
       </section>
 
       {studentDialog && (
