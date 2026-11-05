@@ -1,7 +1,7 @@
 :root {
   font-family: "Trebuchet MS", "Arial Rounded MT Bold", system-ui, sans-serif;
   color: #283f47;
-  background: #101a38;
+  background: #bfeaff;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 }
@@ -37,8 +37,8 @@ input:focus-visible {
   overflow: hidden;
   padding: clamp(24px, 5vw, 64px) clamp(12px, 3vw, 32px);
   background:
-    radial-gradient(ellipse at 82% 16%, rgba(104, 98, 168, 0.27), transparent 38%),
-    linear-gradient(180deg, #0e1633 0%, #1b2750 52%, #352b53 100%);
+    radial-gradient(circle at 85% 8%, rgba(255, 246, 188, .78), transparent 18%),
+    linear-gradient(180deg, #75c8f2 0%, #b9e9fb 48%, #eaf9ff 100%);
 }
 
 .page-shell::after {
@@ -46,79 +46,123 @@ input:focus-visible {
   position: absolute;
   z-index: 0;
   inset: auto 0 0;
-  height: 240px;
+  height: 290px;
   background:
-    radial-gradient(ellipse at 12% 115%, #182745 0 42%, transparent 43%),
-    radial-gradient(ellipse at 85% 128%, #17243f 0 45%, transparent 46%);
+    radial-gradient(ellipse at 8% 112%, #d7f3ff 0 43%, transparent 44%),
+    radial-gradient(ellipse at 52% 125%, #f9fdff 0 48%, transparent 49%),
+    radial-gradient(ellipse at 94% 111%, #ccecff 0 42%, transparent 43%);
   pointer-events: none;
 }
 
-.night-sky {
+.winter-scene {
   position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
-  background-image:
-    radial-gradient(circle, rgba(255, 244, 195, .8) 1px, transparent 2px),
-    radial-gradient(circle, rgba(196, 210, 255, .55) 1px, transparent 2px);
-  background-size: 105px 126px, 173px 157px;
-  background-position: 12px 25px, 72px 63px;
 }
 
-.night-moon {
+.winter-sun {
   position: absolute;
-  top: 30px;
+  top: 26px;
   right: max(3%, calc(50% - 650px));
-  width: clamp(96px, 12vw, 158px);
+  width: clamp(92px, 11vw, 145px);
   aspect-ratio: 1;
   border-radius: 50%;
-  background:
-    radial-gradient(circle at 32% 30%, #f9edc7 0 6%, transparent 7%),
-    radial-gradient(circle at 70% 60%, #e9d9a5 0 10%, transparent 11%),
-    radial-gradient(circle at 35% 74%, #eadcb2 0 7%, transparent 8%),
-    #fff5cf;
-  box-shadow: 0 0 0 16px rgba(255, 234, 166, .07), 0 0 58px 18px rgba(255, 230, 159, .3);
+  background: #fff4ae;
+  box-shadow: 0 0 0 17px rgba(255, 244, 174, .18), 0 0 62px 20px rgba(255, 231, 137, .5);
 }
 
-.night-star {
+.winter-cloud {
   position: absolute;
-  color: #fff2ba;
-  font-size: clamp(18px, 2.4vw, 30px);
-  line-height: 1;
-  text-shadow: 0 0 10px #ffe7a3, 0 0 22px rgba(255, 223, 142, .8);
-  animation: night-sparkle 3.2s ease-in-out infinite;
+  top: 120px;
+  left: 3%;
+  width: 150px;
+  height: 42px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, .72);
+  box-shadow: 35px -23px 0 2px rgba(255, 255, 255, .72), 76px -10px 0 rgba(255, 255, 255, .72);
+  animation: winter-cloud-drift 15s ease-in-out infinite alternate;
 }
 
-.night-star:nth-of-type(3n) { color: #d9e8ff; text-shadow: 0 0 12px #a6c9ff; }
-
-.night-pumpkin {
-  position: absolute;
-  top: 490px;
-  left: max(15px, calc(50% - 625px));
-  color: #ffad52;
-  font-size: clamp(76px, 10vw, 125px);
-  filter: drop-shadow(0 0 18px rgba(255, 133, 52, .55));
-  transform: rotate(-10deg);
-  animation: pumpkin-glow 4s ease-in-out infinite;
-}
-
-.night-pumpkin-right {
-  top: 760px;
-  right: max(10px, calc(50% - 625px));
+.winter-cloud-two {
+  top: 265px;
+  right: 4%;
   left: auto;
-  transform: rotate(10deg) scale(.8);
-  animation-delay: -2s;
+  transform: scale(.68);
+  opacity: .76;
+  animation-delay: -7s;
 }
 
-@keyframes night-sparkle {
-  0%, 100% { opacity: .45; transform: scale(.8); }
-  50% { opacity: 1; transform: scale(1.2); }
+.winter-tree {
+  position: absolute;
+  top: 510px;
+  left: max(14px, calc(50% - 640px));
+  font-size: clamp(84px, 11vw, 135px);
+  filter: drop-shadow(0 12px 7px rgba(38, 112, 105, .2));
+  transform: rotate(-5deg);
 }
 
-@keyframes pumpkin-glow {
-  0%, 100% { filter: drop-shadow(0 0 12px rgba(255, 133, 52, .35)); }
-  50% { filter: drop-shadow(0 0 26px rgba(255, 152, 59, .8)); }
+.winter-tree-right {
+  top: 850px;
+  right: max(12px, calc(50% - 640px));
+  left: auto;
+  transform: rotate(5deg) scale(.82);
+}
+
+.winter-gift {
+  position: absolute;
+  top: 760px;
+  left: max(20px, calc(50% - 625px));
+  font-size: clamp(58px, 8vw, 92px);
+  transform: rotate(7deg);
+  filter: drop-shadow(0 9px 6px rgba(38, 112, 105, .18));
+}
+
+.snowfall {
+  position: fixed;
+  z-index: 2;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.snowflake {
+  position: absolute;
+  top: -28px;
+  left: var(--snow-left);
+  width: var(--snow-size);
+  height: var(--snow-size);
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 6px rgba(255, 255, 255, .9);
+  opacity: .78;
+  animation: snow-fall var(--snow-duration) linear var(--snow-delay) infinite;
+}
+
+.snowflake:nth-child(3n) {
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.snowflake:nth-child(3n)::before {
+  content: "❄";
+  position: absolute;
+  color: rgba(255, 255, 255, .95);
+  font-size: calc(var(--snow-size) * 1.45);
+  line-height: 1;
+}
+
+@keyframes snow-fall {
+  from { transform: translate3d(-12px, -5vh, 0) rotate(0); }
+  50% { transform: translate3d(18px, 52vh, 0) rotate(180deg); }
+  to { transform: translate3d(-8px, 108vh, 0) rotate(360deg); }
+}
+
+@keyframes winter-cloud-drift {
+  from { translate: -8px 0; }
+  to { translate: 16px 2px; }
 }
 
 .classroom-board {
@@ -128,14 +172,41 @@ input:focus-visible {
   margin: 0 auto;
   border: 12px solid #9a573b;
   border-radius: 18px;
-  background: #24465b;
+  background: #2e6455;
   box-shadow:
     0 0 0 5px #713c2f,
     0 16px 0 #713c2f,
-    0 26px 48px rgba(5, 12, 35, 0.52),
-    0 0 42px rgba(255, 167, 72, .16),
+    0 26px 48px rgba(32, 104, 126, .28),
+    0 0 42px rgba(255, 255, 255, .3),
     inset 0 0 0 4px rgba(255, 255, 255, 0.12);
 }
+
+.board-snowcap {
+  position: absolute;
+  z-index: 4;
+  top: -22px;
+  right: -8px;
+  left: -8px;
+  height: 23px;
+  border-radius: 18px 18px 9px 9px;
+  background: #f8fdff;
+  box-shadow: 0 5px 0 rgba(190, 229, 239, .78), 0 9px 12px rgba(133, 194, 210, .25);
+  pointer-events: none;
+}
+
+.board-snowcap::before,
+.board-snowcap::after {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  width: 82px;
+  height: 21px;
+  border-radius: 0 0 60% 60%;
+  background: #f8fdff;
+}
+
+.board-snowcap::before { left: 10%; }
+.board-snowcap::after { right: 14%; width: 54px; height: 17px; }
 
 .classroom-board::before,
 .classroom-board::after {
@@ -166,45 +237,69 @@ input:focus-visible {
   background-size: 44px 44px, 56px 56px;
 }
 
-.board-header > :not(.corner-web):not(.header-pumpkin) {
+.board-header > :not(.header-garland):not(.header-candy) {
   position: relative;
   z-index: 1;
 }
 
-.corner-web {
+.header-garland {
   position: absolute;
   z-index: 0;
-  top: 0;
-  left: 0;
-  width: clamp(105px, 19vw, 190px);
-  height: auto;
-  color: rgba(221, 215, 252, .55);
-  filter: drop-shadow(0 0 5px rgba(200, 198, 255, .35));
+  top: 8px;
+  right: 8%;
+  left: 8%;
+  display: flex;
+  justify-content: space-around;
+  height: 34px;
+  border-top: 6px solid #174d3a;
+  border-radius: 50%;
   pointer-events: none;
 }
 
-.corner-web-right {
-  right: 0;
-  left: auto;
-  transform: scaleX(-1);
+.header-garland::before,
+.header-garland::after {
+  content: "";
+  position: absolute;
+  top: -11px;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  background: #2a7b4c;
+  box-shadow: 19px 4px 0 #3a9461, 38px 0 0 #2a7b4c;
 }
 
-.header-pumpkin {
+.header-garland::before { left: 0; }
+.header-garland::after { right: 38px; }
+
+.header-garland i {
+  width: 9px;
+  height: 13px;
+  margin-top: -2px;
+  border-radius: 50%;
+  background: #ffd55f;
+  box-shadow: 0 0 9px #fff1a7;
+}
+
+.header-garland i:nth-child(3n + 1) { background: #ff6269; box-shadow: 0 0 9px #ff9ca1; }
+.header-garland i:nth-child(3n + 2) { background: #74dcff; box-shadow: 0 0 9px #a8ecff; }
+
+.header-candy {
   position: absolute;
   z-index: 0;
-  bottom: 4px;
-  left: 8px;
-  font-size: clamp(38px, 6vw, 64px);
+  bottom: 3px;
+  left: 10px;
+  font-size: clamp(43px, 6vw, 68px);
   line-height: 1;
-  filter: drop-shadow(0 0 10px rgba(255, 147, 59, .65));
+  filter: drop-shadow(0 0 9px rgba(255, 255, 255, .6));
+  transform: rotate(-18deg);
   pointer-events: none;
 }
 
-.header-pumpkin-right { right: 8px; left: auto; }
+.header-candy-right { right: 10px; left: auto; transform: rotate(18deg) scaleX(-1); }
 
 .eyebrow {
   margin: 0 0 12px;
-  color: #ffcb77;
+  color: #ffe17a;
   font-family: ui-monospace, "Courier New", monospace;
   font-size: clamp(0.68rem, 1.5vw, 0.84rem);
   font-weight: 900;
@@ -219,7 +314,7 @@ h1 {
   font-weight: 1000;
   letter-spacing: 0.035em;
   line-height: 1.15;
-  text-shadow: 4px 4px 0 #332743, 7px 7px 0 rgba(0, 0, 0, 0.25);
+  text-shadow: 4px 4px 0 #1c493d, 7px 7px 0 rgba(0, 0, 0, 0.18);
 }
 
 .board-header-long-title h1 {
@@ -228,7 +323,7 @@ h1 {
 
 .subtitle {
   margin: 13px 0 0;
-  color: #e8e5ff;
+  color: #e6fff6;
   font-size: clamp(0.95rem, 2vw, 1.15rem);
   font-weight: 800;
 }
@@ -254,7 +349,7 @@ h1 {
   padding: 14px 22px;
   border-top: 3px dashed rgba(255, 255, 255, 0.2);
   border-bottom: 3px dashed rgba(255, 255, 255, 0.2);
-  background: rgba(17, 39, 65, 0.8);
+  background: rgba(20, 76, 62, 0.82);
 }
 
 .class-stats,
@@ -266,7 +361,7 @@ h1 {
 
 .class-stats {
   flex: 0 0 auto;
-  color: #f3efff;
+  color: #edfff8;
   font-size: 0.92rem;
   font-weight: 800;
 }
@@ -278,7 +373,7 @@ h1 {
   font-size: 1.25rem;
 }
 
-.stat-divider { color: #73bcb0; font-size: 0.65rem; }
+.stat-divider { color: #8bd8bd; font-size: 0.65rem; }
 
 .reward-picker {
   flex: 1 1 700px;
@@ -287,10 +382,10 @@ h1 {
   gap: 6px;
   width: min(840px, 100%);
   padding: 6px;
-  border: 2px solid #173f3b;
+  border: 2px solid #113f34;
   border-radius: 10px;
-  background: #1b384d;
-  box-shadow: 0 4px 0 #173f3b;
+  background: #174d40;
+  box-shadow: 0 4px 0 #113f34;
 }
 
 .reward-picker button {
@@ -351,20 +446,20 @@ h1 {
 .picker-icon-boba { background: linear-gradient(180deg, #f1ddff, #c38ef2 55%, #6b3e24); }
 .picker-icon-mooncake { background: linear-gradient(135deg, #fff1a8, #d98b34 55%, #8b4b24); }
 .picker-icon-lantern { background: linear-gradient(180deg, #fff1a2, #f34f42 54%, #9b1f32); }
-.picker-icon-pumpkin { background: linear-gradient(180deg, #ffe9a9, #ff9b45); }
-.picker-icon-ghost { background: linear-gradient(180deg, #faf6ff, #bbadf4); }
-.picker-icon-bat { background: linear-gradient(180deg, #e2d4ff, #a394db); }
-.picker-icon-candycorn { background: linear-gradient(180deg, #fff9df, #ffc980); }
-.picker-icon-witchhat { background: linear-gradient(180deg, #e8d8ff, #a780d3); }
-.picker-icon-blackcat { background: linear-gradient(180deg, #e9daf4, #b99aca); }
-.picker-icon-cauldron { background: linear-gradient(180deg, #e3f9cd, #b4de9b); }
-.picker-icon-skull { background: linear-gradient(180deg, #fffdf0, #dccdea); }
-.picker-icon-spider { background: linear-gradient(180deg, #eee1f5, #b7a0c5); }
 .picker-icon-tree { background: linear-gradient(180deg, #e2f8ce, #8bd6a8); }
 .picker-icon-snowman { background: linear-gradient(180deg, #f9ffff, #afdef0); }
 .picker-icon-gift { background: linear-gradient(180deg, #fff4b9, #ff9ba3); }
 .picker-icon-santahat { background: linear-gradient(180deg, #fff7ec, #f49ba2); }
 .picker-icon-candycane { background: linear-gradient(180deg, #fff9ec, #f7b0a7); }
+.picker-icon-santa { background: linear-gradient(180deg, #fff5dc, #ef8084); }
+.picker-icon-reindeer { background: linear-gradient(180deg, #ffe8bd, #bd855d); }
+.picker-icon-bell { background: linear-gradient(180deg, #fff8bf, #f4bd45); }
+.picker-icon-stocking { background: linear-gradient(180deg, #fff7e8, #ed6b72); }
+.picker-icon-gingerbread { background: linear-gradient(180deg, #fff0c9, #c98753); }
+.picker-icon-wreath { background: linear-gradient(180deg, #e9ffd8, #73c58e); }
+.picker-icon-snowflake { background: linear-gradient(180deg, #f9ffff, #9ddcf5); }
+.picker-icon-sleigh { background: linear-gradient(180deg, #fff4cf, #e96e72); }
+.picker-icon-cocoa { background: linear-gradient(180deg, #fff2df, #d1785e); }
 
 .seasonal-pixel-icon {
   display: inline-block;
@@ -913,20 +1008,20 @@ h1 {
 .reward-icon-boba { background: linear-gradient(180deg, #f2deff, #c38ff3 55%, #704026); }
 .reward-icon-mooncake { background: linear-gradient(135deg, #fff2a9, #d99036 55%, #8b4c25); }
 .reward-icon-lantern { background: linear-gradient(180deg, #fff2a5, #f45543 54%, #9d2032); }
-.reward-icon-pumpkin { background: linear-gradient(180deg, #ffe8a3, #ff9945); }
-.reward-icon-ghost { background: linear-gradient(180deg, #fcf7ff, #bcb0f1); }
-.reward-icon-bat { background: linear-gradient(180deg, #e8dbff, #a694dc); }
-.reward-icon-candycorn { background: linear-gradient(180deg, #fffbe5, #ffc780); }
-.reward-icon-witchhat { background: linear-gradient(180deg, #eddcff, #aa80d8); }
-.reward-icon-blackcat { background: linear-gradient(180deg, #eadbf6, #bd9dcf); }
-.reward-icon-cauldron { background: linear-gradient(180deg, #e5f9d0, #a9d994); }
-.reward-icon-skull { background: linear-gradient(180deg, #fffdf0, #ddceec); }
-.reward-icon-spider { background: linear-gradient(180deg, #f0e3f7, #b5a0c5); }
 .reward-icon-tree { background: linear-gradient(180deg, #e4fad1, #86d2a5); }
 .reward-icon-snowman { background: linear-gradient(180deg, #f9ffff, #ade0ef); }
 .reward-icon-gift { background: linear-gradient(180deg, #fff4bd, #ff9ca8); }
 .reward-icon-santahat { background: linear-gradient(180deg, #fff7eb, #f1969e); }
 .reward-icon-candycane { background: linear-gradient(180deg, #fff9ef, #f5b0a9); }
+.reward-icon-santa { background: linear-gradient(180deg, #fff5dd, #ed7e83); }
+.reward-icon-reindeer { background: linear-gradient(180deg, #ffebc4, #bc8158); }
+.reward-icon-bell { background: linear-gradient(180deg, #fff9c5, #f3b93d); }
+.reward-icon-stocking { background: linear-gradient(180deg, #fff8eb, #ec676e); }
+.reward-icon-gingerbread { background: linear-gradient(180deg, #fff1cc, #c7834f); }
+.reward-icon-wreath { background: linear-gradient(180deg, #ebffdc, #70c188); }
+.reward-icon-snowflake { background: linear-gradient(180deg, #fbffff, #99d9f4); }
+.reward-icon-sleigh { background: linear-gradient(180deg, #fff5d1, #e66a70); }
+.reward-icon-cocoa { background: linear-gradient(180deg, #fff3e2, #ce745a); }
 
 .more-stars {
   flex: 0 0 auto;
@@ -1398,20 +1493,20 @@ h1 {
   animation: reward-lantern-float 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards;
 }
 
-.reward-motion-pumpkin.is-award .reward-main-icon { animation: halloween-pumpkin-pop 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
-.reward-motion-ghost.is-award .reward-main-icon { animation: halloween-ghost-float 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
-.reward-motion-bat.is-award .reward-main-icon { animation: halloween-bat-swoop 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
-.reward-motion-candycorn.is-award .reward-main-icon { animation: halloween-candy-bounce 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
-.reward-motion-witchhat.is-award .reward-main-icon { animation: halloween-hat-twirl 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
-.reward-motion-blackcat.is-award .reward-main-icon { animation: seasonal-cat-peek 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
-.reward-motion-cauldron.is-award .reward-main-icon { animation: seasonal-cauldron-bubble 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
-.reward-motion-skull.is-award .reward-main-icon { animation: seasonal-skull-rattle 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
-.reward-motion-spider.is-award .reward-main-icon { animation: seasonal-spider-drop 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
 .reward-motion-tree.is-award .reward-main-icon { animation: seasonal-tree-grow 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
 .reward-motion-snowman.is-award .reward-main-icon { animation: seasonal-snowman-bounce 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
 .reward-motion-gift.is-award .reward-main-icon { animation: seasonal-gift-open 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
 .reward-motion-santahat.is-award .reward-main-icon { animation: seasonal-hat-land 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
 .reward-motion-candycane.is-award .reward-main-icon { animation: seasonal-candy-swing 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
+.reward-motion-santa.is-award .reward-main-icon { animation: christmas-santa-wave 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
+.reward-motion-reindeer.is-award .reward-main-icon { animation: christmas-reindeer-leap 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
+.reward-motion-bell.is-award .reward-main-icon { animation: christmas-bell-ring 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
+.reward-motion-stocking.is-award .reward-main-icon { animation: christmas-stocking-fill 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
+.reward-motion-gingerbread.is-award .reward-main-icon { animation: christmas-cookie-dance 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
+.reward-motion-wreath.is-award .reward-main-icon { animation: christmas-wreath-spin 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
+.reward-motion-snowflake.is-award .reward-main-icon { animation: christmas-snowflake-crystal 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
+.reward-motion-sleigh.is-award .reward-main-icon { animation: christmas-sleigh-glide 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
+.reward-motion-cocoa.is-award .reward-main-icon { animation: christmas-cocoa-warm 1.25s cubic-bezier(.16, 1.35, .35, 1) forwards; }
 
 .reward-motion-apple.is-award .reward-particles i { color: #67b85f; text-shadow: 0 0 8px #e8ffd8; }
 .reward-motion-pizza.is-award .reward-particles i { color: #ff9e37; text-shadow: 0 0 8px #ffe1a8; }
@@ -1434,20 +1529,20 @@ h1 {
 .reward-motion-boba.is-award .reward-particles i { color: #8e5acb; text-shadow: 0 0 10px #f6e4ff; animation-name: boba-particle-bubble; }
 .reward-motion-mooncake.is-award .reward-particles i { color: #ffd25d; text-shadow: 0 0 12px #fff5bd; animation-name: mooncake-particle-moon; }
 .reward-motion-lantern.is-award .reward-particles i { color: #ff574a; text-shadow: 0 0 12px #ffe79e; animation-name: lantern-particle-flicker; }
-.reward-motion-pumpkin.is-award .reward-particles i { color: #ff982c; text-shadow: 0 0 10px #ffe092; }
-.reward-motion-ghost.is-award .reward-particles i { color: #bd9ae8; text-shadow: 0 0 10px #fff; animation-name: halloween-particle-float; }
-.reward-motion-bat.is-award .reward-particles i { color: #7957af; text-shadow: 0 0 10px #d9c5ff; animation-name: halloween-particle-swirl; }
-.reward-motion-candycorn.is-award .reward-particles i { color: #ffb43b; text-shadow: 0 0 10px #fff0ad; }
-.reward-motion-witchhat.is-award .reward-particles i { color: #af79da; text-shadow: 0 0 10px #e7d2ff; animation-name: halloween-particle-swirl; }
-.reward-motion-blackcat.is-award .reward-particles i,
-.reward-motion-skull.is-award .reward-particles i,
-.reward-motion-spider.is-award .reward-particles i { color: #9e7bb5; text-shadow: 0 0 10px #eee0ff; animation-name: halloween-particle-swirl; }
-.reward-motion-cauldron.is-award .reward-particles i { color: #91d878; text-shadow: 0 0 10px #e3ffb1; animation-name: halloween-particle-float; }
 .reward-motion-tree.is-award .reward-particles i,
 .reward-motion-gift.is-award .reward-particles i,
-.reward-motion-candycane.is-award .reward-particles i { color: #ffca60; text-shadow: 0 0 11px #fff2b5; animation-name: christmas-particle-snow; }
+.reward-motion-candycane.is-award .reward-particles i,
+.reward-motion-bell.is-award .reward-particles i,
+.reward-motion-stocking.is-award .reward-particles i,
+.reward-motion-gingerbread.is-award .reward-particles i { color: #ffca60; text-shadow: 0 0 11px #fff2b5; animation-name: christmas-particle-snow; }
 .reward-motion-snowman.is-award .reward-particles i,
-.reward-motion-santahat.is-award .reward-particles i { color: #9bd8ea; text-shadow: 0 0 11px #fff; animation-name: christmas-particle-snow; }
+.reward-motion-santahat.is-award .reward-particles i,
+.reward-motion-santa.is-award .reward-particles i,
+.reward-motion-snowflake.is-award .reward-particles i,
+.reward-motion-sleigh.is-award .reward-particles i { color: #9bd8ea; text-shadow: 0 0 11px #fff; animation-name: christmas-particle-snow; }
+.reward-motion-reindeer.is-award .reward-particles i,
+.reward-motion-wreath.is-award .reward-particles i { color: #64c986; text-shadow: 0 0 11px #e4ffd9; animation-name: christmas-particle-snow; }
+.reward-motion-cocoa.is-award .reward-particles i { color: #d98a62; text-shadow: 0 0 11px #fff1d5; animation-name: christmas-particle-snow; }
 
 .reward-change {
   position: absolute;
@@ -2252,84 +2347,70 @@ h1 {
   84%, 100% { transform: translateY(0) scale(1) rotate(0); filter: brightness(1.12); }
 }
 
-@keyframes halloween-pumpkin-pop {
-  0% { transform: translateY(35px) scale(0.15) rotate(-18deg); }
-  30% { transform: translateY(-20px) scale(1.25) rotate(9deg); }
-  52% { transform: translateY(7px) scale(0.92) rotate(-5deg); }
-  76% { transform: translateY(-5px) scale(1.08) rotate(3deg); }
+@keyframes christmas-santa-wave {
+  0% { transform: translateY(32px) scale(.18) rotate(-12deg); }
+  30% { transform: translateY(-15px) scale(1.2) rotate(8deg); }
+  54% { transform: translateY(5px) scale(.96) rotate(-7deg); }
+  76% { transform: translateY(-4px) scale(1.06) rotate(5deg); }
   100% { transform: translateY(0) scale(1) rotate(0); }
 }
 
-@keyframes halloween-ghost-float {
-  0% { transform: translate(-28px, 38px) scale(0.2); opacity: 0; }
-  32% { transform: translate(9px, -22px) scale(1.18); opacity: 1; }
-  60% { transform: translate(-7px, 4px) scale(0.97); }
-  84%, 100% { transform: translate(0, -7px) scale(1); opacity: 1; }
-}
-
-@keyframes halloween-bat-swoop {
-  0% { transform: translate(-70px, 45px) scale(0.2) rotate(-30deg); }
-  30% { transform: translate(20px, -24px) scale(1.22) rotate(14deg); }
-  55% { transform: translate(-10px, 4px) scale(0.95) rotate(-9deg); }
+@keyframes christmas-reindeer-leap {
+  0% { transform: translate(-58px, 35px) scale(.2) rotate(-15deg); }
+  36% { transform: translate(12px, -24px) scale(1.18) rotate(7deg); }
+  64% { transform: translate(-5px, 5px) scale(.96) rotate(-3deg); }
   100% { transform: translate(0, 0) scale(1) rotate(0); }
 }
 
-@keyframes halloween-candy-bounce {
-  0% { transform: translateY(-50px) scale(0.2) rotate(25deg); }
-  32% { transform: translateY(11px) scale(1.2, 0.85) rotate(-8deg); }
-  58% { transform: translateY(-18px) scale(0.96, 1.1) rotate(5deg); }
+@keyframes christmas-bell-ring {
+  0% { transform: translateY(-42px) scale(.2) rotate(-25deg); }
+  34% { transform: translateY(8px) scale(1.2) rotate(18deg); }
+  54% { transform: rotate(-14deg); }
+  72% { transform: rotate(9deg); }
   100% { transform: translateY(0) scale(1) rotate(0); }
 }
 
-@keyframes halloween-hat-twirl {
-  0% { transform: translateY(28px) scale(0.12) rotate(-80deg); }
-  34% { transform: translateY(-17px) scale(1.22) rotate(24deg); }
-  62% { transform: translateY(5px) scale(0.95) rotate(-8deg); }
+@keyframes christmas-stocking-fill {
+  0% { transform: translateY(-36px) scale(.18, .5); }
+  36% { transform: translateY(8px) scale(1.15, .9) rotate(8deg); }
+  62% { transform: translateY(-5px) scale(.96, 1.08) rotate(-5deg); }
   100% { transform: translateY(0) scale(1) rotate(0); }
 }
 
-@keyframes halloween-particle-float {
-  0% { opacity: 0; transform: translate(0, 15px) scale(0.15); }
-  22% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.2), -13px) scale(1.1); }
-  70% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.7), calc(var(--particle-y) * 0.7 - 20px)) scale(0.9); }
-  100% { opacity: 0; transform: translate(var(--particle-x), calc(var(--particle-y) - 35px)) scale(0.5); }
-}
-
-@keyframes halloween-particle-swirl {
-  0% { opacity: 0; transform: translate(0, 0) scale(0.1) rotate(0); }
-  22% { opacity: 1; transform: translate(calc(var(--particle-x) * -0.3), calc(var(--particle-y) * 0.3)) scale(1.2) rotate(90deg); }
-  65% { opacity: 1; transform: translate(calc(var(--particle-x) * 0.65), calc(var(--particle-y) * 0.75)) scale(0.95) rotate(230deg); }
-  100% { opacity: 0; transform: translate(var(--particle-x), var(--particle-y)) scale(0.5) rotate(360deg); }
-}
-
-@keyframes seasonal-cat-peek {
-  0% { transform: translateY(56px) scale(0.35); opacity: 0; }
-  32% { transform: translateY(-17px) scale(1.2) rotate(-7deg); opacity: 1; }
-  60% { transform: translateY(6px) scale(0.96) rotate(5deg); }
-  100% { transform: translateY(0) scale(1) rotate(0); opacity: 1; }
-}
-
-@keyframes seasonal-cauldron-bubble {
-  0% { transform: translateY(35px) scale(0.2); }
-  28% { transform: translateY(-13px) scale(1.19, 0.9); }
-  50% { transform: translateY(7px) scale(0.93, 1.1); }
-  76% { transform: translateY(-6px) scale(1.07); }
-  100% { transform: translateY(0) scale(1); }
-}
-
-@keyframes seasonal-skull-rattle {
-  0% { transform: scale(0.15) rotate(-20deg); }
-  30% { transform: scale(1.2) rotate(12deg); }
-  52% { transform: scale(0.95) rotate(-8deg); }
-  72% { transform: scale(1.06) rotate(5deg); }
+@keyframes christmas-cookie-dance {
+  0% { transform: scale(.16) rotate(-24deg); }
+  30% { transform: scale(1.2) rotate(14deg); }
+  52% { transform: scale(.96) rotate(-11deg); }
+  74% { transform: scale(1.06) rotate(7deg); }
   100% { transform: scale(1) rotate(0); }
 }
 
-@keyframes seasonal-spider-drop {
-  0% { transform: translateY(-75px) scale(0.35); opacity: 0; }
-  35% { transform: translateY(16px) scale(1.15); opacity: 1; }
-  62% { transform: translateY(-12px) scale(0.95); }
-  100% { transform: translateY(0) scale(1); opacity: 1; }
+@keyframes christmas-wreath-spin {
+  0% { transform: scale(.12) rotate(-160deg); filter: brightness(.9); }
+  38% { transform: scale(1.2) rotate(18deg); filter: brightness(1.25); }
+  66% { transform: scale(.95) rotate(-8deg); }
+  100% { transform: scale(1) rotate(0); filter: brightness(1); }
+}
+
+@keyframes christmas-snowflake-crystal {
+  0% { transform: scale(.1) rotate(0); opacity: 0; filter: brightness(1); }
+  42% { transform: scale(1.28) rotate(150deg); opacity: 1; filter: brightness(1.45); }
+  70% { transform: scale(.94) rotate(290deg); }
+  100% { transform: scale(1) rotate(360deg); opacity: 1; filter: brightness(1.1); }
+}
+
+@keyframes christmas-sleigh-glide {
+  0% { transform: translate(-80px, -28px) scale(.22) rotate(-8deg); opacity: 0; }
+  42% { transform: translate(14px, 8px) scale(1.16) rotate(5deg); opacity: 1; }
+  68% { transform: translate(-6px, -4px) scale(.96) rotate(-2deg); }
+  100% { transform: translate(0, 0) scale(1) rotate(0); opacity: 1; }
+}
+
+@keyframes christmas-cocoa-warm {
+  0% { transform: translateY(35px) scale(.18); filter: brightness(.9); }
+  32% { transform: translateY(-13px) scale(1.18, .92); filter: brightness(1.22); }
+  58% { transform: translateY(5px) scale(.95, 1.08); }
+  100% { transform: translateY(0) scale(1); filter: brightness(1.05); }
 }
 
 @keyframes seasonal-tree-grow {
@@ -2770,7 +2851,9 @@ h1 {
 }
 
 @media (max-width: 800px) {
-  .night-pumpkin { display: none; }
+  .winter-tree,
+  .winter-gift { display: none; }
+  .snowflake:nth-child(2n) { display: none; }
   .board-header { grid-template-columns: 54px 1fr 54px; padding-inline: 10px; }
   .header-star { font-size: 52px; }
   .toolbar { align-items: stretch; flex-direction: column; }
@@ -2785,13 +2868,14 @@ h1 {
 
 @media (max-width: 540px) {
   .page-shell { padding: 18px 9px 36px; }
-  .night-moon { top: 5px; right: -25px; opacity: .68; }
+  .winter-sun { top: 5px; right: -25px; opacity: .75; }
+  .winter-cloud { opacity: .45; transform: scale(.7); }
   .classroom-board { border-width: 8px; }
   .classroom-board::before,
   .classroom-board::after { display: none; }
   .board-header { grid-template-columns: 1fr; }
-  .corner-web { width: 112px; opacity: .75; }
-  .header-pumpkin { bottom: 5px; font-size: 34px; }
+  .header-garland { right: 4%; left: 4%; }
+  .header-candy { bottom: 4px; font-size: 35px; opacity: .8; }
   .header-star { display: none; }
   .eyebrow { letter-spacing: 0.07em; }
   .students-list { padding: 14px 10px; }

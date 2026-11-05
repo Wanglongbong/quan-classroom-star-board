@@ -1,20 +1,21 @@
 import { useEffect, useRef, useState } from "react";
 import SeasonalIcon from "./SeasonalIcon";
 
-const NIGHT_STARS = [
-  [7, 8], [18, 17], [31, 6], [44, 20], [57, 9], [72, 17], [89, 7],
-  [11, 35], [25, 46], [77, 39], [94, 52], [5, 72], [19, 85], [82, 77], [96, 91],
+const SNOWFLAKES = [
+  [3, 0.2, 8, 8], [7, 3.1, 13, 11], [12, 1.4, 9, 9], [17, 5.2, 15, 13],
+  [22, 2.3, 7, 10], [28, 6.5, 12, 12], [34, 0.9, 10, 9], [39, 4.4, 16, 14],
+  [45, 2.8, 8, 11], [51, 7.1, 13, 10], [57, 1.8, 9, 12], [63, 5.7, 15, 13],
+  [69, 3.6, 7, 9], [74, 0.5, 11, 11], [79, 6.8, 14, 14], [84, 2.1, 8, 10],
+  [89, 4.9, 12, 12], [94, 1.1, 9, 9], [98, 7.5, 15, 13], [10, 8.2, 7, 14],
+  [25, 9.4, 10, 15], [42, 8.7, 8, 13], [60, 9.9, 11, 15], [76, 8.4, 9, 14],
+  [91, 9.1, 7, 13],
 ];
 
-function CornerWeb({ right = false }) {
+function FestiveGarland() {
   return (
-    <svg className={`corner-web${right ? " corner-web-right" : ""}`} viewBox="0 0 160 160" aria-hidden="true" focusable="false">
-      <g fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
-        <path d="M0 0H160M0 0V160M0 0L160 160M0 0L80 160M0 0L160 80M0 0L32 160M0 0L160 32" />
-        <path d="M32 0Q28 17 6 28M62 0Q56 35 13 54M99 0Q85 58 23 88M137 0Q116 84 35 123M160 20Q121 118 20 160" />
-        <path d="M0 32Q17 28 28 6M0 62Q35 56 54 13M0 99Q58 85 88 23M0 137Q84 116 123 35" />
-      </g>
-    </svg>
+    <div className="header-garland" aria-hidden="true">
+      {Array.from({ length: 13 }, (_, index) => <i key={index} />)}
+    </div>
   );
 }
 
@@ -46,20 +47,20 @@ const REWARD_OPTIONS = {
   boba: { type: "boba", icon: "🧋", label: "Trà sữa", plural: "ly trà sữa", boardTitle: "TRÀ SỮA" },
   mooncake: { type: "mooncake", icon: "🥮", label: "Bánh TT", plural: "chiếc bánh trung thu", boardTitle: "BÁNH TRUNG THU" },
   lantern: { type: "lantern", icon: "🏮", label: "Lồng đèn", plural: "chiếc lồng đèn", boardTitle: "LỒNG ĐÈN" },
-  pumpkin: { type: "pumpkin", icon: <SeasonalIcon type="pumpkin" />, label: "Bí ngô", plural: "quả bí ngô", boardTitle: "BÍ NGÔ" },
-  ghost: { type: "ghost", icon: <SeasonalIcon type="ghost" />, label: "Ma nhỏ", plural: "chú ma nhỏ", boardTitle: "MA NHỎ" },
-  bat: { type: "bat", icon: <SeasonalIcon type="bat" />, label: "Dơi", plural: "chú dơi", boardTitle: "DƠI" },
-  candycorn: { type: "candycorn", icon: <SeasonalIcon type="candycorn" />, label: "Kẹo bắp", plural: "viên kẹo bắp", boardTitle: "KẸO BẮP" },
-  witchhat: { type: "witchhat", icon: <SeasonalIcon type="witchhat" />, label: "Mũ phép", plural: "chiếc mũ phép", boardTitle: "MŨ PHÙ THỦY" },
-  blackcat: { type: "blackcat", icon: <SeasonalIcon type="blackcat" />, label: "Mèo đen", plural: "chú mèo đen", boardTitle: "MÈO ĐEN" },
-  cauldron: { type: "cauldron", icon: <SeasonalIcon type="cauldron" />, label: "Nồi phép", plural: "chiếc nồi phép", boardTitle: "NỒI PHÉP" },
-  skull: { type: "skull", icon: <SeasonalIcon type="skull" />, label: "Đầu lâu", plural: "chiếc đầu lâu", boardTitle: "ĐẦU LÂU" },
-  spider: { type: "spider", icon: <SeasonalIcon type="spider" />, label: "Nhện", plural: "chú nhện", boardTitle: "NHỆN" },
   tree: { type: "tree", icon: <SeasonalIcon type="tree" />, label: "Thông Noel", plural: "cây thông Noel", boardTitle: "THÔNG NOEL" },
   snowman: { type: "snowman", icon: <SeasonalIcon type="snowman" />, label: "Người tuyết", plural: "người tuyết", boardTitle: "NGƯỜI TUYẾT" },
   gift: { type: "gift", icon: <SeasonalIcon type="gift" />, label: "Hộp quà", plural: "hộp quà", boardTitle: "HỘP QUÀ" },
   santahat: { type: "santahat", icon: <SeasonalIcon type="santahat" />, label: "Mũ Noel", plural: "chiếc mũ Noel", boardTitle: "MŨ NOEL" },
   candycane: { type: "candycane", icon: <SeasonalIcon type="candycane" />, label: "Kẹo gậy", plural: "cây kẹo gậy", boardTitle: "KẸO GẬY" },
+  santa: { type: "santa", icon: <SeasonalIcon type="santa" />, label: "Ông Noel", plural: "ông già Noel", boardTitle: "ÔNG GIÀ NOEL" },
+  reindeer: { type: "reindeer", icon: <SeasonalIcon type="reindeer" />, label: "Tuần lộc", plural: "chú tuần lộc", boardTitle: "TUẦN LỘC" },
+  bell: { type: "bell", icon: <SeasonalIcon type="bell" />, label: "Chuông", plural: "chiếc chuông vàng", boardTitle: "CHUÔNG VÀNG" },
+  stocking: { type: "stocking", icon: <SeasonalIcon type="stocking" />, label: "Tất Noel", plural: "chiếc tất Noel", boardTitle: "TẤT NOEL" },
+  gingerbread: { type: "gingerbread", icon: <SeasonalIcon type="gingerbread" />, label: "Bánh gừng", plural: "chiếc bánh gừng", boardTitle: "BÁNH GỪNG" },
+  wreath: { type: "wreath", icon: <SeasonalIcon type="wreath" />, label: "Vòng lá", plural: "vòng nguyệt quế", boardTitle: "VÒNG NGUYỆT QUẾ" },
+  snowflake: { type: "snowflake", icon: <SeasonalIcon type="snowflake" />, label: "Bông tuyết", plural: "bông tuyết", boardTitle: "BÔNG TUYẾT" },
+  sleigh: { type: "sleigh", icon: <SeasonalIcon type="sleigh" />, label: "Xe tuyết", plural: "chiếc xe trượt tuyết", boardTitle: "XE TRƯỢT TUYẾT" },
+  cocoa: { type: "cocoa", icon: <SeasonalIcon type="cocoa" />, label: "Cacao", plural: "cốc cacao nóng", boardTitle: "CACAO NÓNG" },
 };
 const REWARD_PARTICLES = {
   star: ["✦", "•"],
@@ -84,20 +85,20 @@ const REWARD_PARTICLES = {
   boba: ["○", "✦"],
   mooncake: ["☾", "✦"],
   lantern: ["✦", "◆"],
-  pumpkin: ["✦", "◆"],
-  ghost: ["✧", "○"],
-  bat: ["◆", "✦"],
-  candycorn: ["▲", "✦"],
-  witchhat: ["✧", "★"],
-  blackcat: ["✦", "◈"],
-  cauldron: ["✧", "○"],
-  skull: ["✦", "◆"],
-  spider: ["✧", "•"],
   tree: ["✦", "❄"],
   snowman: ["❄", "✧"],
   gift: ["✦", "◆"],
   santahat: ["❄", "✦"],
   candycane: ["✧", "❄"],
+  santa: ["✦", "❄"],
+  reindeer: ["◆", "✦"],
+  bell: ["♪", "✦"],
+  stocking: ["✦", "◆"],
+  gingerbread: ["•", "✦"],
+  wreath: ["✦", "●"],
+  snowflake: ["❄", "✧"],
+  sleigh: ["❄", "✦"],
+  cocoa: ["~", "✦"],
 };
 const MILESTONE_EFFECTS = {
   10: { badge: "🏆", title: "KHỞI ĐỘNG RỰC RỠ", icons: "✦ ✦ ✦", duration: 2200 },
@@ -499,7 +500,7 @@ export default function App() {
   const [soundOn, setSoundOn] = useState(() => localStorage.getItem(SOUND_KEY) !== "off");
   const [rewardType, setRewardType] = useState(() => {
     const savedReward = localStorage.getItem(REWARD_KEY);
-    return REWARD_OPTIONS[savedReward] ? savedReward : "star";
+    return REWARD_OPTIONS[savedReward] ? savedReward : "tree";
   });
   const [studentDialog, setStudentDialog] = useState(null);
   const [confirmation, setConfirmation] = useState(null);
@@ -606,25 +607,30 @@ export default function App() {
 
   return (
     <main className="page-shell">
-      <div className="night-sky" aria-hidden="true">
-        <div className="night-moon" />
-        {NIGHT_STARS.map(([left, top], index) => (
+      <div className="winter-scene" aria-hidden="true">
+        <div className="winter-sun" />
+        <div className="winter-cloud winter-cloud-one" />
+        <div className="winter-cloud winter-cloud-two" />
+        <span className="winter-tree winter-tree-left"><SeasonalIcon type="tree" /></span>
+        <span className="winter-tree winter-tree-right"><SeasonalIcon type="tree" /></span>
+        <span className="winter-gift"><SeasonalIcon type="gift" /></span>
+      </div>
+      <div className="snowfall" aria-hidden="true">
+        {SNOWFLAKES.map(([left, delay, size, duration], index) => (
           <span
-            className="night-star"
-            key={`${left}-${top}`}
-            style={{ left: `${left}%`, top: `${top}%`, animationDelay: `${(index % 5) * -0.65}s` }}
-          >✦</span>
+            className="snowflake"
+            key={`${left}-${index}`}
+            style={{ "--snow-left": `${left}%`, "--snow-delay": `${-delay}s`, "--snow-size": `${size}px`, "--snow-duration": `${duration}s` }}
+          />
         ))}
-        <span className="night-pumpkin night-pumpkin-left"><SeasonalIcon type="pumpkin" /></span>
-        <span className="night-pumpkin night-pumpkin-right"><SeasonalIcon type="pumpkin" /></span>
       </div>
 
       <section className="classroom-board" aria-labelledby="page-title">
+        <div className="board-snowcap" aria-hidden="true" />
         <header className={`board-header ${reward.boardTitle.length >= 10 ? "board-header-long-title" : ""}`}>
-          <CornerWeb />
-          <CornerWeb right />
-          <span className="header-pumpkin header-pumpkin-left" aria-hidden="true"><SeasonalIcon type="pumpkin" /></span>
-          <span className="header-pumpkin header-pumpkin-right" aria-hidden="true"><SeasonalIcon type="pumpkin" /></span>
+          <FestiveGarland />
+          <span className="header-candy header-candy-left" aria-hidden="true"><SeasonalIcon type="candycane" /></span>
+          <span className="header-candy header-candy-right" aria-hidden="true"><SeasonalIcon type="candycane" /></span>
           <div className="header-star" aria-hidden="true">{reward.icon}</div>
           <div>
             <p className="eyebrow">MỖI CỐ GẮNG · MỘT PHẦN THƯỞNG</p>
