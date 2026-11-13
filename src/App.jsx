@@ -61,6 +61,10 @@ const REWARD_OPTIONS = {
   snowflake: { type: "snowflake", icon: <SeasonalIcon type="snowflake" />, label: "Bông tuyết", plural: "bông tuyết", boardTitle: "BÔNG TUYẾT" },
   sleigh: { type: "sleigh", icon: <SeasonalIcon type="sleigh" />, label: "Xe tuyết", plural: "chiếc xe trượt tuyết", boardTitle: "XE TRƯỢT TUYẾT" },
   cocoa: { type: "cocoa", icon: <SeasonalIcon type="cocoa" />, label: "Cacao", plural: "cốc cacao nóng", boardTitle: "CACAO NÓNG" },
+  toytrain: { type: "toytrain", icon: <SeasonalIcon type="toytrain" />, label: "Tàu đồ chơi", plural: "đoàn tàu đồ chơi", boardTitle: "TÀU ĐỒ CHƠI" },
+  snowglobe: { type: "snowglobe", icon: <SeasonalIcon type="snowglobe" />, label: "Quả cầu tuyết", plural: "quả cầu tuyết", boardTitle: "QUẢ CẦU TUYẾT" },
+  gingerhouse: { type: "gingerhouse", icon: <SeasonalIcon type="gingerhouse" />, label: "Nhà bánh gừng", plural: "ngôi nhà bánh gừng", boardTitle: "NHÀ BÁNH GỪNG" },
+  giftbag: { type: "giftbag", icon: <SeasonalIcon type="giftbag" />, label: "Túi quà", plural: "túi quà Noel", boardTitle: "TÚI QUÀ NOEL" },
 };
 const REWARD_PARTICLES = {
   star: ["✦", "•"],
@@ -99,6 +103,10 @@ const REWARD_PARTICLES = {
   snowflake: ["❄", "✧"],
   sleigh: ["❄", "✦"],
   cocoa: ["~", "✦"],
+  toytrain: ["✦", "▰"],
+  snowglobe: ["❄", "✧"],
+  gingerhouse: ["•", "✦"],
+  giftbag: ["✦", "◆"],
 };
 const MILESTONE_EFFECTS = {
   10: { badge: "🏆", title: "KHỞI ĐỘNG RỰC RỠ", icons: "✦ ✦ ✦", duration: 2200 },
@@ -223,6 +231,33 @@ function playTing(audioContextRef) {
   oscillator.stop(now + 0.21);
 }
 
+function playMilestoneJingle(audioContextRef, milestone) {
+  const AudioContext = window.AudioContext || window.webkitAudioContext;
+  if (!AudioContext) return;
+
+  const context = audioContextRef.current || new AudioContext();
+  audioContextRef.current = context;
+  if (context.state === "suspended") context.resume();
+
+  const notes = [784, 988, 1175, 1568, 1175, 1568];
+  const pitchLift = 1 + Math.min(milestone / 50 - 1, 10) * 0.025;
+  const start = context.currentTime + 0.02;
+  notes.forEach((frequency, index) => {
+    const at = start + index * 0.22;
+    const oscillator = context.createOscillator();
+    const gain = context.createGain();
+    oscillator.type = "sine";
+    oscillator.frequency.setValueAtTime(frequency * pitchLift, at);
+    gain.gain.setValueAtTime(0.0001, at);
+    gain.gain.exponentialRampToValueAtTime(index === notes.length - 1 ? 0.12 : 0.09, at + 0.012);
+    gain.gain.exponentialRampToValueAtTime(0.0001, at + 0.34);
+    oscillator.connect(gain);
+    gain.connect(context.destination);
+    oscillator.start(at);
+    oscillator.stop(at + 0.35);
+  });
+}
+
 function playPenaltySound(audioContextRef) {
   const AudioContext = window.AudioContext || window.webkitAudioContext;
   if (!AudioContext) return;
@@ -343,7 +378,7 @@ function StudentCard({ student, reward, onAward, onPenalize, onEdit, onReset, on
     window.setTimeout(() => {
       setBursts((current) => current.filter((burst) => burst.id !== burstId));
     }, reachedMilestone ? getMilestoneEffect(reachedMilestone).duration : 1350);
-    onAward(student.id);
+    onAward(student.id, nextStars);
   }
 
   function penalize() {
@@ -530,13 +565,16 @@ export default function App() {
     return () => window.removeEventListener("keydown", closeOnEscape);
   }, []);
 
-  function awardStar(studentId) {
+  function awardStar(studentId, nextStars) {
     setStudents((current) =>
       current.map((student) =>
         student.id === studentId ? { ...student, stars: student.stars + 1 } : student,
       ),
     );
-    if (soundOn) playTing(audioContextRef);
+    if (soundOn) {
+      if (nextStars % 50 === 0) playMilestoneJingle(audioContextRef, nextStars);
+      else playTing(audioContextRef);
+    }
   }
 
   function penalizeStar(studentId) {

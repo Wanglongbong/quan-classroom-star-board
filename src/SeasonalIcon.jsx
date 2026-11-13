@@ -96,6 +96,36 @@ const PIXELS = {
     ["#e95765", "M9 14h5v3H9z M9 21h5v3H9z M17 7h4v3h-4z M23 12h3v3h-3z"],
     ["#7ab899", "M10 10h3v3h-3z"],
   ],
+  toytrain: [
+    ["#713b4b", "M3 20h27v5H3z M7 25h6v5H7z M22 25h6v5h-6z M6 7h9v13H4v-9h2z M17 11h9v9h-9z"],
+    ["#df4f5b", "M6 10h7v8H6z M18 14h6v4h-6z M4 20h25v3H4z"],
+    ["#f3c34f", "M7 7h6v3H7z M14 18h4v2h-4z M24 19h4v2h-4z"],
+    ["#a6e9ff", "M7 12h4v4H7z M19 14h4v3h-4z"],
+    ["#fff2bd", "M2 29h28v2H2z"],
+  ],
+  snowglobe: [
+    ["#345c83", "M7 3h18v3h4v15h-3v4h-4v3h-4v2h-6v-2H8v-3H5v-4H2V7h3z"],
+    ["#7ed7ef", "M8 5h16v3h3v11h-3v4h-4v2h-8v-2H8v-4H5V8h3z"],
+    ["#eafcff", "M9 7h13v3h3v7h-3v3h-4v2h-5v-2H9v-4H7v-6h2z"],
+    ["#37865a", "M11 16h3v-4h3v4h3v3H9v-2h2z M15 19h3v3h-3z"],
+    ["#e64f5a", "M13 14h3v3h-3z M19 11h2v2h-2z"],
+    ["#f4cb5a", "M8 25h16v3H8z M5 28h22v3H5z"],
+  ],
+  gingerhouse: [
+    ["#68402f", "M2 13 16 2l14 11v17h-9v-9h-9v9H2z"],
+    ["#bd7545", "M5 14 16 5l11 9v13h-7v-9H12v9H5z"],
+    ["#fff1d4", "M4 13 16 4l12 9h-5l-7-5-7 5z M12 18h9v3h-9z M4 27h24v3H4z"],
+    ["#75bf83", "M7 15h5v5H7z M21 15h5v5h-5z"],
+    ["#e7505b", "M8 16h3v3H8z M22 16h3v3h-3z M14 23h4v4h-4z M6 11h4v3H6z M22 11h4v3h-4z"],
+    ["#ffd56a", "M14 12h4v4h-4z"],
+  ],
+  giftbag: [
+    ["#713d50", "M5 9h22v19H5z M9 5h4v5H9z M19 5h4v5h-4z M3 28h26v3H3z"],
+    ["#df4d5a", "M7 11h18v14H7z M10 7h3v4h-3z M19 7h3v4h-3z"],
+    ["#fff0c8", "M14 11h4v14h-4z M7 16h18v3H7z"],
+    ["#f3c657", "M15 12h3v3h-3z M15 20h3v3h-3z"],
+    ["#7ac28e", "M5 27h22v2H5z"],
+  ],
 };
 
 export default function SeasonalIcon({ type }) {
